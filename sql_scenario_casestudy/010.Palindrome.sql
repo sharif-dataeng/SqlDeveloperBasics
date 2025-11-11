@@ -1,0 +1,16 @@
+CREATE TABLE PALINDROME
+(
+	Names varchar(10)
+)
+
+
+insert into PALINDROME(names) values('WOW'),('OK'),('NOON'),('FIVE'),('LEVEL'),('NICE'),('MADAM'),('GOOD'),('MALAYALAM')
+
+SELECT * FROM PALINDROME
+
+SELECT NAMES, 
+CASE 
+	WHEN REVERSE(NAMES) = Names THEN 'YES'
+	ELSE 'NO'
+END IsPalindrome
+FROM PALINDROME

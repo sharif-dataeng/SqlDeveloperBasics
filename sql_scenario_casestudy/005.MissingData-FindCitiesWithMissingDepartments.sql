@@ -1,0 +1,24 @@
+SELECT * FROM EMPLOYEES
+ORDER BY CITY
+
+GO 
+
+WITH CteCities
+AS
+(
+	SELECT DISTINCT CITY FROM EMPLOYEES
+),
+CteDept
+AS
+(
+	SELECT DISTINCT Department FROM EMPLOYEES
+),
+CteCityWithDept
+AS
+(
+	SELECT * FROM CteCities CROSS JOIN CteDept
+)
+SELECT C.CITY,C.Department
+FROM CteCityWithDept C LEFT JOIN EMPLOYEES E
+ON C.City=E.City AND C.Department = E.Department
+WHERE E.City IS NULL
