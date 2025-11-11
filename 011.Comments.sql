@@ -1,0 +1,12 @@
+--SELECT * FROM DimProduct
+
+SELECT DISTINCT COLOR FROM DimProduct --this query removes duplicates
+
+/*
+SELECT DISTINCT COLOR FROM DimProduct 
+SELECT DISTINCT COLOR FROM DimProduct 
+SELECT DISTINCT COLOR FROM DimProduct 
+
+*/
+
+SELECT DISTINCT COLOR FROM DimProduct 

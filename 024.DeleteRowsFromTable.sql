@@ -1,0 +1,12 @@
+DROP TABLE DimProduct_BkUP
+SELECT * INTO DimProduct_BkUP FROM DimProduct
+
+DELETE FROM DimProduct_BkUP
+
+DELETE FROM DimProduct_BkUP
+WHERE COLOR = 'RED'
+
+SELECT * FROM DimProduct_BkUP
+
+TRUNCATE TABLE DimProduct_BkUP
+WHERE COLOR = 'RED'
