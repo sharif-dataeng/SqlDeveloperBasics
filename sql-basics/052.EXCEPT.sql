@@ -1,0 +1,9 @@
+
+
+SELECT * FROM tblEmps
+EXCEPT
+SELECT * FROM tblEmps2
+
+SELECT * FROM tblEmps2
+EXCEPT
+SELECT * FROM tblEmps

@@ -1,0 +1,7 @@
+SELECT * FROM EMPLOYEES
+
+SELECT EmployeeName FROM EMPLOYEES
+
+SELECT EmployeeId,EmployeeName,Salary FROM EMPLOYEES
+
+SELECT EmployeeName,Salary,EmployeeId FROM EMPLOYEES

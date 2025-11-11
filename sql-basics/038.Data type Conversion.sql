@@ -1,0 +1,21 @@
+
+
+SELECT 'ab' + 'xy'
+
+SELECT 10 + 20
+
+
+SELECT '10' + '20'
+
+SELECT '10' + 20
+
+SELECT 20 + 'X'
+
+SELECT CAST('20' AS INT)
+
+
+SELECT CAST(ListPrice AS  money) FROM DimProduct
+
+SELECT CONVERT(INT,'20')
+
+SELECT CONVERT(INT,ListPrice) FROM DimProduct
