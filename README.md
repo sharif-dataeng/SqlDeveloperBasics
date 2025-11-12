@@ -154,4 +154,4 @@ Feel free to add more examples or improve existing scripts!
 
 ---
 
-**Happy Learning! 🎓**
+**Happy Learning! 🎓  
