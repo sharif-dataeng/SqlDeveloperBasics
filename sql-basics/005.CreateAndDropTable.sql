@@ -1,8 +1,8 @@
 -- Drop existing table if it exists, then recreate and populate with sample rows
-DROP TABLE IF EXISTS dbo.EMPLOYEES;
+DROP TABLE IF EXISTS dbo.STUDENTS;
 GO
 
-CREATE TABLE dbo.EMPLOYEES (
+CREATE TABLE dbo.STUDENTS (
 	EmployeeId INT PRIMARY KEY,
 	EmployeeName VARCHAR(100),
 	Location VARCHAR(100),
