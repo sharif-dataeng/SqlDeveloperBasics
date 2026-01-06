@@ -5,4 +5,4 @@ END
 GO
 
 -- To drop the database (SQL Server 2016+):
--- DROP DATABASE IF EXISTS [TRAINING];
+DROP DATABASE IF EXISTS [TRAINING];
