@@ -1,0 +1,73 @@
+Here are the SQL data types, explained clearly and practically (mainly for SQL Server, with notes where others differ).
+
+1. Numeric Data Types
+Integer Types
+Data Type	Size	Range
+TINYINT	1 byte	0 to 255
+SMALLINT	2 bytes	-32,768 to 32,767
+INT	4 bytes	-2,147,483,648 to 2,147,483,647
+BIGINT	8 bytes	-9 quintillion to +9 quintillion
+Exact Numeric
+Data Type	Description
+DECIMAL(p,s) / NUMERIC(p,s)	Fixed precision and scale (recommended for money)
+Approximate Numeric
+Data Type	Description
+FLOAT	Floating-point number
+REAL	Less precision than FLOAT
+
+2. Character / String Data Types
+Fixed & Variable Length
+Data Type	Description
+CHAR(n)	Fixed-length string
+VARCHAR(n)	Variable-length string
+VARCHAR(MAX)	Up to 2 GB text
+Unicode (supports Telugu, Hindi, etc.)
+Data Type	Description
+NCHAR(n)	Fixed-length Unicode
+NVARCHAR(n)	Variable-length Unicode
+NVARCHAR(MAX)	Large Unicode text
+
+3. Date & Time Data Types
+Data Type	Description
+DATE	Only date
+TIME	Only time
+DATETIME	Date + time (old)
+DATETIME2	Date + time (recommended)
+SMALLDATETIME	Less precision
+DATETIMEOFFSET	Date + time + timezone
+
+4. Boolean / Bit
+Data Type	Description
+BIT	0 or 1 (TRUE/FALSE)
+
+5. Binary Data Types
+Data Type	Description
+BINARY(n)	Fixed-length binary
+VARBINARY(n)	Variable-length binary
+VARBINARY(MAX)	Images, files
+
+6. Special / Other Data Types
+Data Type	Description
+UNIQUEIDENTIFIER	GUID
+XML	XML data
+JSON	Stored as NVARCHAR (SQL Server)
+ROWVERSION	Versioning
+SQL_VARIANT	Stores different data types
+GEOGRAPHY / GEOMETRY	Spatial data
+
+7. Identity & Auto Increment
+id INT IDENTITY(1,1)
+
+
+Starts at 1
+
+Increments by 1
+
+8. Commonly Used (Best Practice)
+Use Case	Recommended Type
+Primary Key	INT / BIGINT
+Names	NVARCHAR(100)
+Description	NVARCHAR(MAX)
+Amount	DECIMAL(18,2)
+Date & Time	DATETIME2
+Boolean	BIT
