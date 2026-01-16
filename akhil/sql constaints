@@ -1,0 +1,203 @@
+SQL Constraints – Detailed Explanation
+📌 What is a Constraint?
+
+A constraint is a rule defined on a table or column that controls what data is allowed in the database.
+
+👉 If data violates the rule, SQL Server stops the INSERT or UPDATE and throws an error.
+
+🧠 Why Constraints Are Important (Real-World Meaning)
+
+Imagine a bank system:
+
+Account number must be unique
+
+Balance cannot be negative
+
+Every transaction must belong to a valid account
+
+➡ These rules are enforced using constraints.
+
+🧱 Types of SQL Constraints (In Depth)
+1️⃣ PRIMARY KEY Constraint
+🔹 What it does
+
+Uniquely identifies each row in a table
+
+No duplicates
+
+No NULL values
+
+🔹 Why we need it
+
+To uniquely identify records
+
+To create relationships with other tables
+
+To improve searching and indexing
+
+🔹 Example
+CREATE TABLE Employee (
+    EmpID INT PRIMARY KEY,
+    EmpName VARCHAR(50)
+);
+
+🔹 What happens if violated?
+INSERT INTO Employee VALUES (1, 'Akhil');
+INSERT INTO Employee VALUES (1, 'Ravi'); -- ❌ Error: duplicate key
+
+🔹 Interview Tip
+
+A table can have only one primary key, but it can contain multiple columns (composite key).
+
+2️⃣ FOREIGN KEY Constraint
+🔹 What it does
+
+Creates a relationship between two tables
+
+Ensures referential integrity
+
+Prevents orphan records
+
+🔹 Why we need it
+
+Ensures child data always refers to valid parent data
+
+Maintains data consistency
+
+🔹 Example
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    CONSTRAINT FK_Orders_Customers
+    FOREIGN KEY (CustomerID)
+    REFERENCES Customers(CustomerID)
+);
+
+🔹 Real-world meaning
+
+You cannot place an order for a customer who doesn’t exist
+
+🔹 Delete / Update rules
+ON DELETE CASCADE   -- Deletes child rows automatically
+ON DELETE NO ACTION -- Prevents deletion
+
+3️⃣ UNIQUE Constraint
+🔹 What it does
+
+Ensures no duplicate values
+
+Allows one NULL in SQL Server
+
+🔹 Why we need it
+
+To avoid duplicate emails, phone numbers, Aadhaar, etc.
+
+🔹 Example
+CREATE TABLE Users (
+    UserID INT,
+    Email VARCHAR(100) UNIQUE
+);
+
+🔹 Difference from PRIMARY KEY
+PRIMARY KEY	UNIQUE
+Only one	Multiple allowed
+No NULL	Allows NULL
+Main identifier	Alternate key
+4️⃣ NOT NULL Constraint
+🔹 What it does
+
+Makes a column mandatory
+
+🔹 Why we need it
+
+Some data is compulsory (Name, DOB, Salary)
+
+🔹 Example
+CREATE TABLE Product (
+    ProductID INT NOT NULL,
+    ProductName VARCHAR(100) NOT NULL
+);
+
+🔹 Without NOT NULL
+
+SQL allows empty records → bad data
+
+5️⃣ CHECK Constraint
+🔹 What it does
+
+Validates data using a condition
+
+🔹 Why we need it
+
+Enforces business rules at DB level
+
+🔹 Example
+CREATE TABLE Employee (
+    Age INT CHECK (Age >= 18),
+    Salary INT CHECK (Salary > 0)
+);
+
+🔹 What happens?
+
+Salary < 0 → ❌ rejected
+
+Age < 18 → ❌ rejected
+
+6️⃣ DEFAULT Constraint
+🔹 What it does
+
+Automatically inserts a value if none is provided
+
+🔹 Why we need it
+
+Saves effort
+
+Ensures consistency
+
+🔹 Example
+CREATE TABLE Orders (
+    Status VARCHAR(20) DEFAULT 'Pending',
+    CreatedDate DATETIME DEFAULT GETDATE()
+);
+
+7️⃣ Composite Constraints (Multiple Columns)
+CREATE TABLE Enrollment (
+    StudentID INT,
+    CourseID INT,
+    CONSTRAINT PK_Enrollment
+    PRIMARY KEY (StudentID, CourseID)
+);
+
+
+➡ Prevents same student enrolling twice in same course
+
+🛠 Adding Constraints After Table Creation
+ALTER TABLE Employee
+ADD CONSTRAINT CK_Age CHECK (Age >= 18);
+
+❌ Dropping Constraints
+ALTER TABLE Employee
+DROP CONSTRAINT CK_Age;
+
+🔍 How to View Constraints (SQL Server)
+EXEC sp_help 'Employee';
+
+SELECT * FROM sys.foreign_keys;
+
+🏢 Constraints in Real Projects
+🔹 OLTP Systems
+
+✔ All constraints enabled
+✔ Strict data integrity
+
+🔹 Data Warehouses
+
+✔ Primary keys always
+⚠ Foreign keys sometimes disabled (performance)
+✔ Validation in ETL tools (ADF / SSIS)
+
+⚖ Constraints vs Triggers (Important Interview Topic)
+Constraint	Trigger
+Simple rules	Complex logic
+Fast	Slightly slower
+Declarative	Procedural
