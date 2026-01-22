@@ -1,0 +1,1 @@
+select distinct region, sum(Amount) over (partition by region) as region_sales from sales;
