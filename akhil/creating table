@@ -1,0 +1,29 @@
+-- Drop if exists, create table, insert sample data, then randomize values
+DROP TABLE IF EXISTS dbo.EMPLOYEES;
+DROP TABLE IF EXISTS dbo.STUDENTS;
+GO
+
+CREATE TABLE dbo.EMPLOYEES (
+	EmployeeId INT PRIMARY KEY,
+	EmployeeName NVARCHAR(100),
+	Location NVARCHAR(100),
+	Sex CHAR(1),
+	Age INT,
+	Email NVARCHAR(255),
+	Department NVARCHAR(100),
+	HireDate DATE,
+	Salary DECIMAL(18,2),
+	IsActive BIT
+);
+GO
+
+INSERT INTO dbo.EMPLOYEES (EmployeeId, EmployeeName, Location, Sex, Age, Email, Department, HireDate, Salary, IsActive) VALUES
+	(1, 'Alice Johnson', 'New York', 'F', 34, 'alice.johnson@example.com', 'Finance', '2017-05-10', 82000.00, 1),
+	(2, 'Bob Smith', 'Chicago', 'M', 41, 'bob.smith@example.com', 'Sales', '2014-11-03', 94000.00, 1),
+	(3, 'Carmen Lee', 'San Francisco', 'F', 29, 'carmen.lee@example.com', 'Engineering', '2020-02-17', 78000.00, 1),
+	(4, 'David Miller', 'Los Angeles', 'M', 29, 'david.miller@example.com', 'Support', '2019-08-22', 56000.00, 1),
+	(5, 'Eve Torres', 'Seattle', 'F', 36, 'eve.torres@example.com', 'HR', '2015-03-30', 73000.00, 1),
+	(6, 'Frank Zhang', 'Austin', 'M', 32, 'frank.zhang@example.com', 'Engineering', '2018-07-12', 81000.00, 1),
+	(7, 'Grace Park', 'Boston', 'F', 27, 'grace.park@example.com', 'Marketing', '2021-09-01', 67000.00, 1);
+GO
+
