@@ -27,3 +27,5 @@ INSERT INTO dbo.EMPLOYEES (EmployeeId, EmployeeName, Location, Sex, Age, Email, 
 	(7, 'Grace Park', 'Boston', 'F', 27, 'grace.park@example.com', 'Marketing', '2021-09-01', 67000.00, 1);
 GO
 
+
+
