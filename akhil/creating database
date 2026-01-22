@@ -1,0 +1,2 @@
+create database akh_sql if not exists;
+use akh_sql;
