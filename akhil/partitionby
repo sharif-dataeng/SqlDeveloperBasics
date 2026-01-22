@@ -1,0 +1,23 @@
+drop table if exists sales;
+
+CREATE TABLE Sales (
+    SaleID INT,
+    Region NVARCHAR(50),
+    SalesPerson NVARCHAR(50),
+    Amount INT
+);
+
+INSERT INTO Sales VALUES
+(1, 'North', 'Alice', 500),
+(2, 'North', 'Bob',   300),
+(3, 'South', 'Alice', 700),
+(4, 'South', 'Charlie', 200),
+(5, 'North', 'Alice', 400),
+(6, 'South', 'Bob',   600),
+(7, 'North', 'Charlie', 250),
+(8, 'South', 'Alice', 300);
+
+select SalesPerson,
+       Region,
+       sum(Amount) over (partition by SalesPerson) as total_sales_by_person
+from Sales;
