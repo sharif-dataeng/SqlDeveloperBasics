@@ -1,0 +1,16 @@
+DROP TABLE IF EXISTS Students;
+
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    StudentName VARCHAR(50),
+    Class VARCHAR(50),
+    Marks INT
+);
+
+INSERT INTO Students (StudentID, StudentName, [Class], Marks) VALUES
+(1, 'Alice', 'Math', 85),
+(2, 'Bob', 'Math', 92),
+(3, 'Charlie', 'Science', 78),
+(4, 'David', 'Science', 88),
+(5, 'Eva', 'Math', 75),
+(6, 'Frank', 'Science', 95);
