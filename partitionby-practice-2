@@ -1,6 +1,4 @@
-IF OBJECT_ID('dbo.Students', 'U') IS NOT NULL
-    DROP TABLE dbo.Students;
-IF OBJECT_ID('dbo.Students', 'U') IS NOT NULL
+﻿IF OBJECT_ID(''dbo.Students'', ''U'') IS NOT NULL
     DROP TABLE dbo.Students;
 
 CREATE TABLE dbo.Students (
@@ -11,9 +9,9 @@ CREATE TABLE dbo.Students (
 );
 
 INSERT INTO dbo.Students (StudentID, StudentName, [Class], Marks) VALUES
-(1, 'Alice', 'Math', 85),
-(2, 'Bob', 'Math', 92),
-(3, 'Charlie', 'Science', 78),
-(4, 'David', 'Science', 88),
-(5, 'Eva', 'Math', 75),
-(6, 'Frank', 'Science', 95);
+(1, ''Alice'', ''Math'', 85),
+(2, ''Bob'', ''Math'', 92),
+(3, ''Charlie'', ''Science'', 78),
+(4, ''David'', ''Science'', 88),
+(5, ''Eva'', ''Math'', 75),
+(6, ''Frank'', ''Science'', 95);
