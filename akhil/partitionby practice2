@@ -1,4 +1,3 @@
-﻿select studentname,class,marks,
+select studentname,class,marks,
 rank() OVER (PARTITION BY class ORDER BY marks DESC) as rank_in_class
 from students;
-
