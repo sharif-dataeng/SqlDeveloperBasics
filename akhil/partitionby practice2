@@ -1,4 +1,32 @@
+    ---SELECT 
+    -- StudentName,
+    -- Class,
+      --  Marks,
+        --RANK() OVER (PARTITION BY Class ORDER BY Marks DESC) AS RankInClass
+    --FROM Students;
 
-select studentname,class,marks,
-rank() OVER (PARTITION BY class ORDER BY marks DESC) as rank_in_class
-from students;
+drop table if exists Employees;
+
+-- Create Employees table
+CREATE TABLE Employees (
+    EmpID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Dept VARCHAR(50),
+    Salary DECIMAL(10,2)
+);
+INSERT INTO Employees (EmpID, Name, Dept, Salary)
+VALUES
+(1, 'Alice', 'HR', 5000.00),
+(2, 'Bob', 'HR', 7000.00),
+(3, 'Carol', 'IT', 8000.00),
+(4, 'David', 'IT', 7500.00),
+(5, 'Eve', 'Sales', 6000.00),
+(6, 'Frank', 'Sales', 6200.00),
+(7, 'Grace', 'Finance', 9000.00),
+(8, 'Hank', 'Finance', 8700.00),
+(9, 'Ivy', 'Marketing', 7200.00),
+(10, 'Jack', 'Marketing', 7100.00);
+
+ SELECT DISTINCT Dept, Name, Dept, Salary,
+     RANK() OVER (PARTITION BY Dept ORDER BY Salary DESC) AS DeptRank
+ FROM Employees;

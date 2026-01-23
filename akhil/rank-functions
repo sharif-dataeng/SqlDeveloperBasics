@@ -1,3 +1,4 @@
+drop table if exists Stocks;
 -- Create table
 CREATE TABLE Stocks (
     StockID INT PRIMARY KEY,
@@ -111,3 +112,38 @@ VALUES
 (98, 'XYZ188', 'Company188', 934.56, -1.56),
 (99, 'XYZ189', 'Company189', 945.67, 5.01),
 (100, 'XYZ190', 'Company190', 956.78, -0.89);
+
+
+-- SELECT *
+-- FROM (
+--     SELECT 
+--         StockID,
+--         StockSymbol,
+--         CompanyName,
+--         Price,
+--         RANK() OVER (ORDER BY Price DESC) AS RankNum
+--     FROM Stocks
+-- ) AS Ranked
+-- WHERE RankNum = 1;
+
+
+
+    SELECT TOP 1 
+    StockID,
+    StockSymbol,
+    CompanyName,
+    Price
+FROM Stocks
+ORDER BY Price DESC;
+
+
+--     SELECT 
+--     StockID,
+--     StockSymbol,
+--     CompanyName,
+--     Price,
+--     RANK() OVER (ORDER BY Price DESC) AS RankNum
+-- FROM Stocks
+-- ORDER BY Price DESC
+-- OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY;
+ 
