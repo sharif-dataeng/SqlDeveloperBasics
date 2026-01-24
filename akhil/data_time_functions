@@ -1,0 +1,28 @@
+-- -- -- select GETDATE() as currentdate;
+
+-- -- SELECT CAST( () AS DATE) AS TodayDate;
+
+-- --  SELECT CAST(GETDATE() AS DATE) AS TodayDate;
+
+-- -- SELECT FULLNAME, HireDate
+-- -- FROM Employees
+-- -- WHERE YEAR(HireDate) = YEAR(GETDATE());
+-- -- -- 
+-- IF COL_LENGTH('Employees','age') IS NULL
+-- 	ALTER TABLE Employees ADD age int;
+
+-- UPDATE Employees
+-- SET age = DATEADD(YEAR, -30, GETDATE())
+-- WHERE salary >6000;
+
+-- select * from Employees;
+
+-- -- SELECT Name, HireDate
+-- -- FROM Employees
+-- -- WHERE CAST(HireDate AS DATE) = CAST(GETDATE() AS DATE);
+
+-- -- SELECT NAME, HireDate
+-- -- FROM Employees
+-- -- WHERE YEAR(HireDate) = YEAR(GETDATE());
+  
+ALTER TABLE Employees DROP COLUMN age;
