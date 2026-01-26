@@ -1,6 +1,6 @@
 SELECT EmployeeKey,FirstName,MiddleName,LastName FROM DimEmployee
 
-SELECT FirstName + ' ' +  LastName FROM DimEmployee
+SELECT FirstName + ' ' +  LastName as fullname  FROM DimEmployee
 
 SELECT FirstName + SPACE(1) + ISNULL(MiddleName,'') 
 + SPACE(1) + LastName FROM DimEmployee

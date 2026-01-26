@@ -1,0 +1,30 @@
+DROP TABLE IF EXISTS dbo.students;
+GO
+create table dbo.students (
+    studentid int primary key,
+    studentname varchar(100),
+    location varchar(100),
+    sex char(1),
+    age int,    
+    email varchar(255),
+    department varchar(100),
+    
+);
+GO  
+
+insert into dbo.students (studentid, studentname, location, sex, age, email, department) values
+
+    (1, 'Alice Johnson', 'New York', 'F', 34, 'alice.johnson@example.com', 'HR'),
+    (2, 'Bob Smith', 'Chicago', 'M', 41, 'bob.smith@example.com', 'IT'),
+    (3, 'Carmen Lee', 'San Francisco', 'F', 29, 'carmen.lee@example.com', 'Finance'),
+    (4, 'David Miller', 'Los Angeles', 'M', 36, 'david.miller@example.com', 'Marketing'),
+    (5, 'Eve Torres', 'Seattle', 'F', 32, 'eve.torres@example.com', 'Operations'),
+    (6, 'Frank Zhang', 'Austin', 'M', 28, 'frank.zhang@example.com', 'IT'),
+    (7, 'Grace Park', 'Boston', 'F', 30, 'grace.park@example.com', 'Finance'),
+    (8, 'Hank Green', 'Denver', 'M', 45, 'hank.green@example.com', 'Operations'),
+    (9, 'Ivy Brown', 'Miami', 'F', 27, 'ivy.brown@example.com', 'HR'),
+    (10, 'Jack White', 'San Diego', 'M', 38, 'jack.white@example.com', 'IT');
+
+
+
+    SELECT * FROM dbo.students;
