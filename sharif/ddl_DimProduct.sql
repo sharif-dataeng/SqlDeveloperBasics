@@ -13,3 +13,5 @@ CREATE TABLE DimProduct (
     SellStartDate DATETIME NOT NULL,
     SellEndDate DATETIME NULL
 );
+
+dont use this ddl script anymore

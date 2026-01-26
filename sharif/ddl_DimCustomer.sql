@@ -11,3 +11,5 @@ CREATE TABLE DimCustomer (
     StateProvinceName NVARCHAR(50) NULL,
     CountryRegionName NVARCHAR(50) NULL
 );
+
+dont use this ddl script anymore

@@ -9,3 +9,5 @@ CREATE TABLE DimEmployee (
     DepartmentName NVARCHAR(50) NULL,
     IsCurrent BIT NOT NULL                     -- HR.Employee.CurrentFlag
 );
+
+dont use this ddl script anymore
