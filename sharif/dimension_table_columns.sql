@@ -124,3 +124,22 @@ Join Path Summary
 2. Product.ProductSubcategoryID → ProductSubcategory.ProductSubcategoryID
 3. ProductSubcategory.ProductCategoryID → ProductCategory.ProductCategoryID
 ---
+
+Dimcustomer
+1. [Sales].[Customer]
+2. [Person].[Person]
+3. [Person].[PersonPhone]
+4. [Person].[EmailAddress]
+5. [Person].[AddressType]
+6. [Person].[BusinessEntityAddress]
+7. [Person].[Address]
+Dimemployee
+1. [HumanResources].[Employee]
+2. [Person].[Person]
+3. [HumanResources].[Department]
+4. [HumanResources].[EmployeeDepartmentHistory]
+Dimproduct
+1. [Production].[Product]
+2. [Production].[ProductModel]
+3. [Production].[ProductCategory]
+4. [Production].[ProductSubcategory]
