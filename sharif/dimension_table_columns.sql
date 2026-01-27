@@ -31,10 +31,11 @@ Recommended Columns for DimCustomer
 ---
 Join Path Summary
 
-1. Customer.PersonID → Person.BusinessEntityID
-2. Person.BusinessEntityID → EmailAddress.BusinessEntityID
-3. Person.BusinessEntityID → BusinessEntityAddress.BusinessEntityID → Address.AddressID
-4. BusinessEntityAddress.AddressTypeID → AddressType.AddressTypeID
+1. BusinessEntity.BusinessEntityID → Person.BusinessEntityID
+2. Customer.PersonID → Person.BusinessEntityID
+3. Person.BusinessEntityID → EmailAddress.BusinessEntityID
+4. Person.BusinessEntityID → BusinessEntityAddress.BusinessEntityID → Address.AddressID
+5. BusinessEntityAddress.AddressTypeID → AddressType.AddressTypeID
 ---
 
 Recommended Columns for DimEmployee
@@ -133,6 +134,7 @@ Dimcustomer
 5. [Person].[AddressType]
 6. [Person].[BusinessEntityAddress]
 7. [Person].[Address]
+8. [Person].[BusinessEntity]
 Dimemployee
 1. [HumanResources].[Employee]
 2. [Person].[Person]
