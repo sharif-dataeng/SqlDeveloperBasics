@@ -4,15 +4,13 @@ DROP TABLE IF EXISTS dbo.STUDENTS;
 GO
 
 CREATE TABLE dbo.EMPLOYEES (
-	EmployeeId INT PRIMARY KEY,
+	EmployeeId PRIMARY KEY,
 	EmployeeName NVARCHAR(100),
-	Location NVARCHAR(100),
+	Location CHAR(100),
 	Sex CHAR(1),
 	Age INT,
-	Email NVARCHAR(255),
-	Department NVARCHAR(100),
-	HireDate DATE,
-	Salary DECIMAL(18,2),
+	Email AR(255),
+	Department NVARCHAR(1	Salary DECIMAL(18,2),
 	IsActive BIT
 );
 GO
