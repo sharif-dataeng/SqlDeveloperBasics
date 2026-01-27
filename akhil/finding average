@@ -8,6 +8,6 @@ CREATE TABLE Orders (
 INSERT INTO Orders (OrderID, Customer, OrderAmount, OrderDate) VALUES
 (101, 'John', 250, '2026-01-20'),
 (102, 'Mary', 400, '2026-01-20'),
-(103, 'Steve', 150, '2026-01-21'),
+(103, 'Steve', 150, '226-01-21'),
 (104, 'Anna', 300, '2026-01-21');
  
