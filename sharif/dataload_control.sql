@@ -83,3 +83,13 @@ GO
 -- ('Sales','SpecialOffer','SpecialOfferID'),
 -- ('Sales','SpecialOfferProduct','SpecialOfferID, ProductID'),
 -- ('Sales','Store','BusinessEntityID');
+
+-- update dbo.dataload_control set loadtype = 'I'
+-- where tablename in ('Customer','Person','PersonPhone','EmailAddress','AddressType','BusinessEntityAddress',
+-- 'Address','Employee','Department','EmployeeDepartmentHistory','Product','ProductModel','ProductCategory',
+-- 'ProductSubcategory');
+
+-- update dbo.dataload_control set isactive = 'N'
+-- where tablename not in ('Customer','Person','PersonPhone','EmailAddress','AddressType','BusinessEntityAddress',
+-- 'Address','Employee','Department','EmployeeDepartmentHistory','Product','ProductModel','ProductCategory',
+-- 'ProductSubcategory');
