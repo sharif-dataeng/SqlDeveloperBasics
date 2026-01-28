@@ -15,7 +15,7 @@
 -- SET age = DATEADD(YEAR, -30, GETDATE())
 -- WHERE salary >6000;
 
--- select * from Employees;
+select * from Employees;
 
 -- -- SELECT Name, HireDate
 -- -- FROM Employees
@@ -25,4 +25,8 @@
 -- -- FROM Employees
 -- -- WHERE YEAR(HireDate) = YEAR(GETDATE());
   
-ALTER TABLE Employees DROP COLUMN age;
+-- ALTER TABLE Employees DROP COLUMN age;
+
+-- select name, DATEDIFF(YEAR,birthdate,GETDATE()) as age from Employees;
+
+-- update Employees set age = DATEDIFF(YEAR,birthdate,GETDATE())
