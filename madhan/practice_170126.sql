@@ -5,11 +5,11 @@ CREATE TABLE EMPLOYEES_New(
 	Salary float
 )
 
-INSERT INTO EMPLOYEES_New (EmployeeId, EmployeeName, DOJ, Salary) VALUES
-(1, 'Amit Sharma', '2015-03-12', 55000),
+INSERT INTO EMPLOYEES_New sharif/practice_170126.sql(EmployeeId, EmployeeName, DOJ, Salary) VALUES
+sharif/practice_170126.sql(1, 'Amit Sharma', '2015-03-12', 55000),
 (2, 'Priya Verma', '2016-07-25', 62000),
 (3, 'Rahul Singh', '2017-01-10', 48000),
-(4, 'Sneha Iyer', '2018-11-03', 72000),
+(4, 'Sneha Iyer', '2018-11-03', 72sharif/practice_170126.sql000),
 (5, 'Vikram Rao', '2019-05-15', 51000),
 (6, 'Neha Kapoor', '2020-02-20', 68000),
 (7, 'Arjun Mehta', '2014-09-18', 75000),
