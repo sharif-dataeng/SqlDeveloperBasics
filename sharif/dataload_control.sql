@@ -7,6 +7,7 @@ BEGIN
 		keycolumns varchar(255) NULL,
 		loadtype   char(1) NOT NULL DEFAULT ('F'),
 		isactive   char(1) NOT NULL DEFAULT ('Y'),
+		watermark  varchar(255) NULL,
 		loadedon   datetime NOT NULL DEFAULT ('1900-01-01 00:00:00'),
 		loadstatus varchar(15) NULL
 	);
@@ -83,3 +84,15 @@ GO
 -- ('Sales','SpecialOffer','SpecialOfferID'),
 -- ('Sales','SpecialOfferProduct','SpecialOfferID, ProductID'),
 -- ('Sales','Store','BusinessEntityID');
+
+ --update dbo.dataload_control set loadtype = 'I'
+ --where tablename in ('Customer','Person','PersonPhone','EmailAddress','AddressType','BusinessEntityAddress',
+ --'Address','Employee','Department','EmployeeDepartmentHistory','Product','ProductModel','ProductCategory',
+ --'ProductSubcategory','BusinessEntity');
+
+ --update dbo.dataload_control set isactive = 'N'
+ --where tablename not in ('Customer','Person','PersonPhone','EmailAddress','AddressType','BusinessEntityAddress',
+ --'Address','Employee','Department','EmployeeDepartmentHistory','Product','ProductModel','ProductCategory',
+ --'ProductSubcategory','BusinessEntity');
+
+-- update dataload_control set watermark = 'ModifiedDate' where loadtype = 'I'
