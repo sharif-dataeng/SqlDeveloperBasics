@@ -1,18 +1,18 @@
-IF OBJECT_ID('dbo.DataLoad_Control','U') IS NULL
-BEGIN
-	CREATE TABLE dbo.DataLoad_Control
-	(
-		schemaname varchar(255) NOT NULL,
-		tablename  varchar(255) NOT NULL,
-		keycolumns varchar(255) NULL,
-		loadtype   char(1) NOT NULL DEFAULT ('F'),
-		isactive   char(1) NOT NULL DEFAULT ('Y'),
-		watermark  varchar(255) NULL,
-		loadedon   datetime NOT NULL DEFAULT ('1900-01-01 00:00:00'),
-		loadstatus varchar(15) NULL
-	);
-END
-GO
+-- IF OBJECT_ID('dbo.DataLoad_Control','U') IS NULL
+-- BEGIN
+-- 	CREATE TABLE dbo.DataLoad_Control
+-- 	(
+-- 		schemaname varchar(255) NOT NULL,
+-- 		tablename  varchar(255) NOT NULL,
+-- 		keycolumns varchar(255) NULL,
+-- 		loadtype   char(1) NOT NULL DEFAULT ('F'),
+-- 		isactive   char(1) NOT NULL DEFAULT ('Y'),
+-- 		watermark  varchar(255) NULL,
+-- 		loadedon   datetime NOT NULL DEFAULT ('1900-01-01 00:00:00'),
+-- 		loadstatus varchar(15) NULL
+-- 	);
+-- END
+-- GO
 
 -- INSERT INTO dbo.dataload_control (SchemaName, TableName, KeyColumns)
 -- VALUES
