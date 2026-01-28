@@ -1,58 +1,60 @@
-CREATE TABLE EMPLOYEES_New(
-	EmployeeId int primary key,
-	EmployeeName varchar(100),
-	DOJ datetime,
-	Salary float
-)
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(50),
+    course_id INT
+);
 
-INSERT INTO EMPLOYEES_New (EmployeeId, EmployeeName, DOJ, Salary) VALUES
-(1, 'Amit Sharma', '2015-03-12', 55000),
-(2, 'Priya Verma', '2016-07-25', 62000),
-(3, 'Rahul Singh', '2017-01-10', 48000),
-(4, 'Sneha Iyer', '2018-11-03', 72000),
-(5, 'Vikram Rao', '2019-05-15', 51000),
-(6, 'Neha Kapoor', '2020-02-20', 68000),
-(7, 'Arjun Mehta', '2014-09-18', 75000),
-(8, 'Kiran Das', '2013-06-30', 47000),
-(9, 'Rohit Nair', '2017-12-05', 53000),
-(10, 'Meera Joshi', '2018-08-22', 60000),
-(11, 'Suresh Patil', '2019-10-14', 58000),
-(12, 'Divya Reddy', '2020-04-09', 65000),
-(13, 'Manish Gupta', '2015-01-19', 72000),
-(14, 'Anjali Menon', '2016-03-27', 54000),
-(15, 'Deepak Kumar', '2017-07-11', 50000),
-(16, 'Shweta Mishra', '2018-02-16', 69000),
-(17, 'Naveen Jain', '2019-09-05', 56000),
-(18, 'Pooja Bhat', '2020-11-21', 63000),
-(19, 'Ramesh Yadav', '2014-05-12', 70000),
-(20, 'Sunita Ghosh', '2015-08-29', 52000),
-(21, 'Ajay Malhotra', '2016-12-17', 61000),
-(22, 'Kavita Rao', '2017-04-08', 49000),
-(23, 'Santosh Pillai', '2018-06-19', 57000),
-(24, 'Ishita Roy', '2019-01-23', 66000),
-(25, 'Harish Chandra', '2020-07-30', 53000),
-(26, 'Ritika Sharma', '2013-10-11', 75000),
-(27, 'Varun Khanna', '2014-12-02', 58000),
-(28, 'Alok Das', '2015-06-15', 62000),
-(29, 'Nisha Agarwal', '2016-09-27', 54000),
-(30, 'Kunal Sethi', '2017-11-20', 70000),
-(31, 'Payal Saxena', '2018-01-05', 51000),
-(32, 'Ashok Reddy', '2019-03-18', 67000),
-(33, 'Geeta Nair', '2020-05-09', 56000),
-(34, 'Tarun Mehta', '2014-07-22', 72000),
-(35, 'Monika Kapoor', '2015-02-14', 49000),
-(36, 'Rajeev Sharma', '2016-04-30', 60000),
-(37, 'Bhavna Joshi', '2017-08-19', 53000),
-(38, 'Sanjay Rao', '2018-10-25', 65000),
-(39, 'Lavanya Iyer', '2019-12-12', 58000),
-(40, 'Gaurav Mishra', '2020-09-03', 69000),
-(41, 'Megha Gupta', '2013-11-28', 47000),
-(42, 'Anand Kumar', '2014-01-17', 71000),
-(43, 'Swati Verma', '2015-05-06', 52000),
-(44, 'Vivek Malhotra', '2016-08-21', 64000),
-(45, 'Ritu Singh', '2017-02-09', 50000),
-(46, 'Mohit Jain', '2018-12-01', 73000),
-(47, 'Preeti Das', '2019-06-14', 56000),
-(48, 'Abhishek Roy', '2020-03-27', 61000),
-(49, 'Komal Bhatia', '2014-09-10', 48000),
-(50, 'Chandan Yadav', '2015-11-05', 70000);
+CREATE TABLE Courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(50)
+);
+INSERT INTO Students (student_id, student_name, course_id)
+VALUES
+(1, 'Alice', 101),
+(2, 'Bob', 102),
+(3, 'Charlie', 103),
+(4, 'David', NULL);
+INSERT INTO Courses (course_id, course_name)
+VALUES
+(101, 'Mathematics'),
+(102, 'Physics'),
+(103, 'Chemistry'),
+(104, 'Biology');
+
+SELECT 
+    Students.student_id,
+    Students.student_name,
+    Courses.course_name
+FROM Students
+INNER JOIN Courses
+    ON Students.course_id = Courses.course_id;
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(50),
+    course_id INT
+);
+
+CREATE TABLE Courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(50)
+);
+INSERT INTO Students (student_id, student_name, course_id)
+VALUES
+(1, 'Alice', 101),
+(2, 'Bob', 102),
+(3, 'Charlie', 103),
+(4, 'David', NULL);
+INSERT INTO Courses (course_id, course_name)
+VALUES
+(101, 'Mathematics'),
+(102, 'Physics'),
+(103, 'Chemistry'),
+(104, 'Biology');
+
+SELECT 
+    Students.student_id,
+    Students.student_name,
+    Courses.course_name
+FROM Students
+INNER JOIN Courses
+    ON Students.course_id = Courses.course_id;
