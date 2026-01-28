@@ -29,5 +29,5 @@ LEFT JOIN sys.columns ref_c
    AND fkc.referenced_column_id = ref_c.column_id
 WHERE t.name in ('Customer','Person','PersonPhone','EmailAddress','AddressType','BusinessEntityAddress',
 'Address','Employee','Department','EmployeeDepartmentHistory','Product','ProductModel','ProductCategory',
-'ProductSubcategory')
+'ProductSubcategory','BusinessEntity')
 ORDER BY SchemaName, TableName, ColumnName;
