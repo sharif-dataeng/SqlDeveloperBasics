@@ -17,6 +17,7 @@ INSERT INTO Orders (ProductId, InvoiceNum, OrderDate, City, Qty) VALUES
 (1, 'SOB988', '2022-01-04' , 'London', 2100),
 (2, 'SOB989', '2022-01-04' , 'NYC', 4000),
 (4, 'SOB990', '2022-01-04' , 'Delhi', 838)
+(5, 'SOB880', '2023-01-04' , 'Pelhi', 8908)
 
 
 SELECT ProductId,InvoiceNum,OrderDate,City,Qty,
