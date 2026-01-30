@@ -13,7 +13,7 @@ INSERT INTO EMPLOYEES(EmpName,City,Department,Salary)VALUES
 ('John','NYC','IT',40000),
 ('Amanda','London','Sales',40000),
 ('Aman','Pune','IT',30000),
-('Rahul','Pune','IT',26000),
+('Rahul','Pune','IT',25000),
 ('Sam','London','Sales',30000),
 ('Rakesh','Delhi','IT',20000),
 ('Suraj','Pune','Sales',12000),
