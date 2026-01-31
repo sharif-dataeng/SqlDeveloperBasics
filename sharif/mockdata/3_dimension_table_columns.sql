@@ -24,9 +24,6 @@ Recommended Columns for DimCustomer
 | TerritoryID            | Customer.TerritoryID     | Optional – useful for sales analysis                  |
 | StoreID                | Customer.StoreID         | Optional – if customer is associated with a store     |
 | EmailPromotion         | Person.EmailPromotion    | Indicates opt-in status                               |
-| EffectiveDate          | DW metadata              | For SCD Type 2                                        |
-| ExpiryDate             | DW metadata              | For SCD Type 2                                        |
-| IsCurrent              | DW metadata              | Flag for current record                               |
 
 ---
 Join Path Summary
@@ -69,9 +66,6 @@ Recommended Columns for DimEmployee
 | Suffix             | Person.Suffix                          | Optional                                       |
 | EmailPromotion     | Person.EmailPromotion                  | Indicates marketing opt-in                     |
 | Demographics       | Person.Demographics                    | XML – parse if needed                          |
-| EffectiveDate      | DW metadata                            | For SCD Type 2                                 |
-| ExpiryDate         | DW metadata                            | For SCD Type 2                                 |
-| IsCurrent          | DW metadata                            | Flag for current record                        |
 
 ---
 Join Path Summary
@@ -114,9 +108,6 @@ Recommended Columns for DimProduct
 | ProductSubcategoryName | ProductSubcategory.Name              | Descriptive subcategory name                   |
 | ProductCategoryID      | ProductSubcategory.ProductCategoryID | Join to ProductCategory                        |
 | ProductCategoryName    | ProductCategory.Name                 | Descriptive category name                      |
-| EffectiveDate          | DW metadata                          | For SCD Type 2                                 |
-| ExpiryDate             | DW metadata                          | For SCD Type 2                                 |
-| IsCurrent              | DW metadata                          | Flag for current record                        |
 
 ---
 Join Path Summary
