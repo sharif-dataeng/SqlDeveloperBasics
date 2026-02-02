@@ -1,0 +1,21 @@
+-- SELECT SalesPerson, Region, Amount,
+--        SUM(Amount) OVER (PARTITION BY SalesPerson ORDER BY Region) AS CumulativeSales
+-- FROM Sales;
+
+-- SELECT EmpID, Department, Score,
+--        ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Score DESC) AS RowNum
+-- FROM EmployeePerformance;
+
+-- SELECT EmpID, Department, Score,
+--        RANK() OVER (PARTITION BY Department ORDER BY Score DESC) AS RankValue
+-- FROM EmployeePerformance;
+
+-- SELECT EmpID, Department, Score,
+--        DENSE_RANK() OVER (PARTITION BY Department ORDER BY Score DESC) AS DenseRankValue
+-- FROM EmployeePerformance;
+
+SELECT  EmpID, Department, Score
+FROM EmployeePerformance
+WHERE Department = 'HR'
+ORDER BY Score DESC
+OFFSET 1 ROW FETCH NEXT 1 ROW ONLY;
