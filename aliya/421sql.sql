@@ -1,12 +1,12 @@
-create table empnew1
-(id int,
-name varchar(60),
-salary float,
-email varchar(70)
-);
-insert into empnew1 values(1,'aliya',20000,'aliya@gmail.com')
-insert into empnew1 values(2,'shravya',25000,'shravya@gmail.com')
 
-select * from empnew1;
+CREATE TABLE EMPLOYEES5(
+   EmployeeId int primary key ,
+   Employeename varchar(100) ,
+   DOJ datetime,
+   salary float,
+   Email varchar(100) unique
+)
 
-update empnew set salary = 4000 where id=1 or id=
+insert into employees5 valuess(1,'aliya','2025-12-10',2000,null)
+
+select * from employees5
