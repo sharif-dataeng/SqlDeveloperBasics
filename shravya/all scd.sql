@@ -1,3 +1,6 @@
+
+--No changes are allowed once the record is created. The data remains static
+
 CREATE TABLE Customer_SCD0 (
     CustomerID INT PRIMARY KEY,
     Name VARCHAR(50),
@@ -15,7 +18,7 @@ INSERT INTO Customer_SCD0 VALUES
 SELECT CustomerID, Name, City, Email
 FROM Customer_SCD0;
 
-
+--The old value is simply overwritten with the new value. No history is preserved#
 
 CREATE TABLE Customer_SCD1 (
     CustomerID INT PRIMARY KEY,
@@ -36,6 +39,8 @@ FROM Customer_SCD1
 WHERE CustomerID = 7;  
 
 
+--A new row is added for every change, preserving full history
+--Typically includes effective dates or current flag to indicate active records
 
 
 CREATE TABLE Customer_SCD2 (
@@ -67,7 +72,9 @@ ORDER BY StartDate;
 
 
 
-
+--Adds a new column to store the previous value, 
+--while keeping the current value in the original column.
+ --Only limited history is preserved.
 
 CREATE TABLE Customer_SCD3 (
     CustomerID INT PRIMARY KEY,
