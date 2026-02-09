@@ -1,0 +1,93 @@
+CREATE TABLE Customer_SCD0 (
+    CustomerID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    City VARCHAR(50),
+    Email VARCHAR(100)
+);
+
+INSERT INTO Customer_SCD0 VALUES
+(1, 'Alice Brown', 'New York', 'alice@abc.com'),
+(2, 'Bob Smith', 'Chicago', 'bob@abc.com'),
+(3, 'Carol Jones', 'Dallas', 'carol@abc.com'),
+(4, 'David Lee', 'Miami', 'david@abc.com'),
+(5, 'Emma White', 'Seattle', 'emma@abc.com');
+
+-- Query: Retrieve all customers (values are fixed)
+SELECT CustomerID, Name, City, Email
+FROM Customer_SCD0;
+
+
+-- =========================================================
+-- SCD 1 – Overwrite (No History)
+-- =========================================================
+CREATE TABLE Customer_SCD1 (
+    CustomerID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    City VARCHAR(50),
+    Email VARCHAR(100)
+);
+
+INSERT INTO Customer_SCD1 VALUES
+(6, 'Frank Green', 'Denver', 'frank@abc.com'),
+(7, 'Grace Hall', 'Boston', 'grace@abc.com'),
+(8, 'Henry King', 'Austin', 'henry@abc.com'),
+(9, 'Irene Scott', 'Phoenix', 'irene@abc.com'),
+(10, 'Jack Adams', 'Houston', 'jack@abc.com');
+
+-- Query: Get current customer details
+SELECT CustomerID, Name, City, Email
+FROM Customer_SCD1
+WHERE CustomerID = 7;
+
+
+-- =========================================================
+-- SCD 2 – History Tracking (New Row with Dates)
+-- =========================================================
+CREATE TABLE Customer_SCD2 (
+    CustomerID INT,
+    Name VARCHAR(50),
+    City VARCHAR(50),
+    Email VARCHAR(100),
+    StartDate DATE,
+    EndDate DATE,
+    CurrentFlag CHAR(1)
+);
+
+INSERT INTO Customer_SCD2 VALUES
+(11, 'Kate Brown', 'Atlanta', 'kate@abc.com', '2023-01-01', '2024-05-01', 'N'),
+(11, 'Kate Brown', 'Orlando', 'kate@abc.com', '2024-05-02', NULL, 'Y'),
+(12, 'Liam Davis', 'Detroit', 'liam@abc.com', '2022-03-01', '2023-08-15', 'N'),
+(12, 'Liam Davis', 'San Jose', 'liam@abc.com', '2023-08-16', NULL, 'Y'),
+(13, 'Mia Wilson', 'Portland', 'mia@abc.com', '2021-07-01', NULL, 'Y');
+
+-- Query: Get current record only
+SELECT CustomerID, Name, City, Email
+FROM Customer_SCD2
+WHERE CurrentFlag = 'Y';
+
+-- Query: Get full history for a specific customer
+SELECT CustomerID, Name, City, Email, StartDate, EndDate, CurrentFlag
+FROM Customer_SCD2
+WHERE CustomerID = 11
+ORDER BY StartDate;
+
+
+-- =========================================================
+-- SCD 3 – Limited History (Extra Columns)
+-- =========================================================
+CREATE TABLE Customer_SCD3 (
+    CustomerID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    CurrentCity VARCHAR(50),
+    PreviousCity VARCHAR(50),
+    Email VARCHAR(100)
+);
+
+INSERT INTO Customer_SCD3 VALUES
+(14, 'Noah Clark', 'San Diego', 'Denver', 'noah@abc.com'),
+(15, 'Olivia Reed', 'San Francisco', 'Los Angeles', 'olivia@abc.com');
+
+-- Query: Retrieve current and previous city
+SELECT CustomerID, Name, CurrentCity, PreviousCity, Email
+FROM Customer_SCD3
+WHERE CustomerID = 14;
