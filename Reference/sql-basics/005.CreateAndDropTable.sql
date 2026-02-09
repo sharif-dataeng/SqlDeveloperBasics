@@ -29,7 +29,7 @@ INSERT INTO dbo.EMPLOYEES (EmployeeId, EmployeeName, Location, Sex, Age, Email, 
 	(5, 'Eve Torres', 'Seattle', 'F', 36, 'eve.torres@example.com', 'HR', '2015-03-30', 73000.00, 1),
 	(6, 'Frank Zhang', 'Austin', 'M', 32, 'frank.zhang@example.com', 'Engineering', '2018-07-12', 81000.00, 1),
 	(7, 'Grace Park', 'Boston', 'F', 27, 'grace.park@example.com', 'Marketing', '2021-09-01', 67000.00, 1);
-GO
+	GO
 
 -- Randomize existing rows (updates all rows with random picks/values)
 UPDATE dbo.EMPLOYEES
