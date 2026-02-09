@@ -9,7 +9,7 @@ GO
 
 CREATE TABLE dbo.STUDENTS (
 	EmployeeId INT PRIMARY KEY,
-	EmployeeName VARCHAR(100),
+		EmployeeName VARCHAR(100),
 	Location VARCHAR(100),
 	Sex CHAR(1),
 	Age INT,
