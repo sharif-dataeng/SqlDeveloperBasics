@@ -1,15 +1,15 @@
 
 
 
-SELECT *INTO tblsemps2 FROM tblsemps
+SELECT *INTO tblsemps2 FROM tblsemp
 
 SELECT * FROM tblEmps
 UNION
 SELECT * FROM tblemps2
 
-SELECT * FROM tblEmps
+SELECT * FROM tblsemps
 UNION ALL
-SELECT * FROM tblEmps2
+SELECT * FROM TBLSEMPS2
 
 
 SELECT EmployeeId,EmployeeName,Title,Salary FROM tblEmps
