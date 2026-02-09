@@ -1,11 +1,11 @@
 
 
 
-SELECT * into tblEmps2 FROM tblEmps
+SELECT *INTO tblsemps2 FROM tblsemps
 
 SELECT * FROM tblEmps
 UNION
-SELECT * FROM tblEmps2
+SELECT * FROM tblemps2
 
 SELECT * FROM tblEmps
 UNION ALL
