@@ -8,7 +8,7 @@ CREATE TABLE SalesTran(
 )
 
 
-INSERT INTO SalesTran(ProductId,InvoiceNum,Qty,Sales) VALUEs
+INSERT INTO SalesTran(ProductId,InvoiceNum,Qty,Sales) VALUES
 (1,'SOB982',10,3000),
 (2,'SOB983',5,2500),
 (3,'SOB984',5,376),
@@ -40,7 +40,7 @@ SELECT * FROM SalesTran, Products
 SELECT * FROM SalesTran JOIN Products
 ON SalesTran.ProductId = Products.ProductId
 
-SELECT * FROM SalesTran INNER JOIN Products 
+SELECT * FROM SalesTran INNER JOIN Products
 ON SalesTran.ProductId = Products.ProductId
 
 SELECT SalesTran.* FROM SalesTran INNER JOIN Products 
