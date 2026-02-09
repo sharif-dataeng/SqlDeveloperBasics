@@ -1,7 +1,7 @@
 
 
-CREATE TABLE EMPLOYEES(
-	EmployeeId int,
+CREATE TABLE EMPLOYEES
+(	EmployeeId int,
 	EmployeeName varchar(100),
 	DOJ datetime,
 	Salary float
@@ -13,15 +13,15 @@ INSERT INTO EMPLOYEES VALUES(1,'JOHN','2023-01-14',40000)
 INSERT INTO EMPLOYEES(EmployeeId,EmployeeName,DOJ,Salary) 
 VALUES(2,'JACK','2022-11-24',30000)
 
-INSERT INTO EMPLOYEES(EmployeeId,EmployeeName,DOJ,Salary) 
+INSERT INTO EMPLOYEES(EmployeeId,EmployeeName,DOJ,Salary)
 VALUES(3,'AMAN','2021-11-24',30400)
-INSERT INTO EMPLOYEES(EmployeeId,EmployeeName,DOJ,Salary) 
+INSERT INTO EMPLOYEES(EmployeeId,EmployeeName,DOJ,Salary)
 VALUES(4,'YUSUF','2020-11-24',37000)
-INSERT INTO EMPLOYEES(EmployeeId,EmployeeName,DOJ,Salary) 
+INSERT INTO EMPLOYEES(EmployeeId,EmployeeName,DOJ,Salary)
 VALUES(5,'RAHUL','2023-11-24',30900)
 
 
-INSERT INTO EMPLOYEES(EmployeeId,EmployeeName,DOJ,Salary) 
+INSERT INTO EMPLOYEES(EmployeeId,EmployeeName,DOJ,Salary)
 VALUES(6,'ANKIT','2010-11-24',30410),
 (7,'AMANDA','2011-11-24',31410),
 (8,'SAM','2013-11-24',40410)
