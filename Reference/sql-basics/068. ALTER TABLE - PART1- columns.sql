@@ -10,11 +10,12 @@ ALTER TABLE EMPLOYEES
 DROP COLUMN Ema
 
 ALTER TABLE EMPLOYEES
-DROP COLUMN Phone,city
+DROP COLUMN Phone,CITY
 
 
 ALTER TABLE EMPLOYEES
 ALTER COLUMN EmployeeName varchar(200)
+
 
 -- Examples: renaming columns in different RDBMS
 -- SQL Server: use sp_rename (metadata-level rename)
