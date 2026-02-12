@@ -1,4 +1,4 @@
-# Self Introductions (Reframed)
+# Self Introductions
 
 ## Akhil Pacha
 
