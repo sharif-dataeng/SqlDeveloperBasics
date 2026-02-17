@@ -1,0 +1,38 @@
+drop table if EXISTS SalesTran;
+
+CREATE TABLE SalesTran(
+	ProductId int,
+	InvoiceNum varchar(10),
+	Qty int,
+	Sales money
+)
+
+
+INSERT INTO SalesTran(ProductId,InvoiceNum,Qty,Sales) VALUES
+(1,'SOB982',10,3000),
+(2,'SOB983',5,2500),
+(4,'SOB984',5,376),
+(4,'SOB985',7,2100),
+(5,'SOB986',40,4000),
+(6,'SOB987',10,838),
+(1,'SOB988','0','0')
+
+drop table if EXISTS Products1;
+CREATE TABLE Products1(
+	ProductId int,
+	ProductName varchar(50),
+	UnitPrice money
+)
+
+INSERT INTO Products1(ProductId,ProductName,UnitPrice) VALUES
+(1,'ABC Logo Cap',300),
+(2,'Ball Bearing',500),
+(3,'Bell',75.2),
+(1,'Trousers',83.8),
+(5,'Shirt',200),
+(6,'pillow',100),
+(7,'null',0)
+
+-- select p.productname,s.Qty,s.sales from [dbo].[Products1] p  FULL OUTER JOIN [dbo].[SalesTran] s on p.ProductId = s.ProductId;
+
+
