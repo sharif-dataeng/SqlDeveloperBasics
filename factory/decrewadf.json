@@ -1,0 +1,9 @@
+{
+	"name": "decrewadf",
+	"location": "centralus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "66c601b6-766f-485e-b9aa-fee2f593f011",
+		"tenantId": "119f0637-1b71-42b4-be7c-53d105564748"
+	}
+}
