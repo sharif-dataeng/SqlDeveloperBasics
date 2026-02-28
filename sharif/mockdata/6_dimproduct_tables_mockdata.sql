@@ -23,7 +23,7 @@
 -- 1) ProductCategory (lookup)
 -- =========================
 
-select * from [Production].[ProductCategory]
+-- select * from [Production].[ProductCategory]
 
 INSERT INTO [Production].[ProductCategory]
     (Name, rowguid, ModifiedDate)
@@ -42,7 +42,7 @@ VALUES
 -- IDs or use `SET IDENTITY_INSERT` as described above.
 -- =========================
 
-select * from [Production].[ProductSubcategory]
+-- select * from [Production].[ProductSubcategory]
 
 INSERT INTO [Production].[ProductSubcategory]
     (ProductCategoryID, Name, rowguid, ModifiedDate)
@@ -60,7 +60,7 @@ VALUES
 -- Ensure the ProductModelID values align with your Product inserts.
 -- =========================
 
-select * from [Production].[ProductModel]
+-- select * from [Production].[ProductModel]
 
 INSERT INTO [Production].[ProductModel]
     (Name, CatalogDescription, Instructions, rowguid, ModifiedDate)
@@ -81,7 +81,7 @@ VALUES
 --   adjust precision/scales to match your schema.
 -- =========================
 
-select * from [Production].[Product]
+-- select * from [Production].[Product]
 
 INSERT INTO [Production].[Product]
     (Name, ProductNumber, MakeFlag, FinishedGoodsFlag, Color,
