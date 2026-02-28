@@ -18,7 +18,7 @@
 -- 1) Department (lookup)
 -- =========================
 
-select * from [HumanResources].[Department]
+-- select * from [HumanResources].[Department]
 
 INSERT INTO [HumanResources].[Department]
     (Name, GroupName, ModifiedDate)
@@ -37,7 +37,7 @@ VALUES
 -- 2) Shift (lookup)
 -- =========================
 
-select * from [HumanResources].[Shift]
+-- select * from [HumanResources].[Shift]
 
 INSERT INTO [HumanResources].[Shift]
     (Name, StartTime, EndTime, ModifiedDate)
@@ -51,7 +51,7 @@ VALUES
 -- 3) Employee (core rows)
 -- =========================
 
-select * from [HumanResources].[Employee]
+-- select * from [HumanResources].[Employee]
 
 INSERT INTO [HumanResources].[Employee]
     (BusinessEntityID, NationalIDNumber, LoginID, JobTitle, BirthDate, MaritalStatus, Gender, HireDate, SalariedFlag, VacationHours, SickLeaveHours, CurrentFlag)
@@ -67,7 +67,7 @@ VALUES
 -- 4) EmployeeDepartmentHistory (depends on Employee, Department, Shift)
 -- =========================
 
-select * from [HumanResources].[EmployeeDepartmentHistory]
+-- select * from [HumanResources].[EmployeeDepartmentHistory]
 
 INSERT INTO [HumanResources].[EmployeeDepartmentHistory]
     (BusinessEntityID, DepartmentID, ShiftID, StartDate, EndDate, ModifiedDate)
