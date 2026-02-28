@@ -1,0 +1,32 @@
+{
+	"name": "tgr_sch_7_10_pm",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_b2b_copy_static",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2026-02-17T15:23:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						10
+					],
+					"hours": [
+						19
+					]
+				}
+			}
+		}
+	}
+}
