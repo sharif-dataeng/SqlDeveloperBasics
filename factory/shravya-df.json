@@ -1,0 +1,9 @@
+{
+	"name": "shravya-df",
+	"location": "australiaeast",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e973ef77-a434-4e91-b1e4-2ed3bd656e78",
+		"tenantId": "119f0637-1b71-42b4-be7c-53d105564748"
+	}
+}

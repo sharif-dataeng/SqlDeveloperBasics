@@ -1,0 +1,12 @@
+{
+	"name": "ls_dbstorage6_gen1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://dbstorage6.blob.core.windows.net/",
+			"accountKind": "StorageV2"
+		}
+	}
+}
