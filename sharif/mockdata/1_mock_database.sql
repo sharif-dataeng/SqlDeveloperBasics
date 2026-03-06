@@ -83,7 +83,7 @@ CREATE TABLE  [Person].[StateProvince](
   [IsOnlyStateProvinceFlag] [bit] NOT NULL,
   [Name] [nvarchar](50) NOT NULL,
     [TerritoryID] [int] NOT NULL,
-    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL,
+    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_StateProvince_StateProvinceID] PRIMARY KEY CLUSTERED ([StateProvinceID] ASC)
 );
@@ -97,7 +97,7 @@ GO
 */
 CREATE TABLE  [Person].[BusinessEntity](
     [BusinessEntityID] [int] IDENTITY(1,1) NOT FOR REPLICATION NOT NULL,
-    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL,
+    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_BusinessEntity_BusinessEntityID] PRIMARY KEY CLUSTERED ([BusinessEntityID] ASC)
 );
@@ -110,7 +110,7 @@ GO
 CREATE TABLE  [Person].[AddressType](
     [AddressTypeID] [int] IDENTITY(1,1) NOT NULL,
   [Name] [nvarchar](50) NOT NULL,
-    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL,
+    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_AddressType_AddressTypeID] PRIMARY KEY CLUSTERED ([AddressTypeID] ASC)
 );
@@ -129,7 +129,7 @@ CREATE TABLE  [Person].[Address](
     [StateProvinceID] [int] NOT NULL,
     [PostalCode] [nvarchar](15) NOT NULL,
     [SpatialLocation] [nvarchar](250) NULL,
-    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL,
+    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_Address_AddressID] PRIMARY KEY CLUSTERED ([AddressID] ASC)
 );
@@ -146,7 +146,7 @@ CREATE TABLE  [Person].[BusinessEntityAddress](
     [BusinessEntityID] [int] NOT NULL,
     [AddressID] [int] NOT NULL,
     [AddressTypeID] [int] NOT NULL,
-    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL,
+    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_BusinessEntityAddress_BusinessEntityID_AddressID_AddressTypeID] PRIMARY KEY CLUSTERED (
     [BusinessEntityID] ASC, [AddressID] ASC, [AddressTypeID] ASC)
@@ -171,7 +171,7 @@ CREATE TABLE  [Person].[Person](
     [EmailPromotion] [int] NOT NULL,
     [AdditionalContactInfo] [xml] NULL,
     [Demographics] [xml] NULL,
-    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL,
+    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_Person_BusinessEntityID] PRIMARY KEY CLUSTERED ([BusinessEntityID] ASC)
 );
@@ -213,7 +213,7 @@ CREATE TABLE  [Person].[EmailAddress](
     [BusinessEntityID] [int] NOT NULL,
     [EmailAddressID] [int] IDENTITY(1,1) NOT NULL,
     [EmailAddress] [nvarchar](50) NULL,
-    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL,
+    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_EmailAddress_BusinessEntityID_EmailAddressID] PRIMARY KEY CLUSTERED (
     [BusinessEntityID] ASC, [EmailAddressID] ASC)
@@ -231,7 +231,7 @@ CREATE TABLE  [Sales].[SalesTerritory](
     [SalesLastYear] [money] NOT NULL,
     [CostYTD] [money] NOT NULL,
     [CostLastYear] [money] NOT NULL,
-    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL,
+    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_SalesTerritory_TerritoryID] PRIMARY KEY CLUSTERED ([TerritoryID] ASC)
 );
@@ -249,7 +249,7 @@ CREATE TABLE  [Sales].[Customer](
     [StoreID] [int] NULL,
     [TerritoryID] [int] NULL,
     [AccountNumber] AS (isnull('AW'+ RIGHT('00000000' + CONVERT(varchar(8), [CustomerID]), 8),'')),
-    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL,
+    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_Customer_CustomerID] PRIMARY KEY CLUSTERED ([CustomerID] ASC)
 );
@@ -304,7 +304,7 @@ CREATE TABLE  [HumanResources].[Employee](
     [VacationHours] [smallint] NOT NULL,
     [SickLeaveHours] [smallint] NOT NULL,
     [CurrentFlag] [bit] NOT NULL,
-    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL,
+    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_Employee_BusinessEntityID] PRIMARY KEY CLUSTERED ([BusinessEntityID] ASC)
 );
@@ -339,7 +339,7 @@ GO
 CREATE TABLE  [Production].[ProductCategory](
     [ProductCategoryID] [int] IDENTITY(1,1) NOT NULL,
     [Name] [nvarchar](50) NOT NULL,
-    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL,
+    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_ProductCategory_ProductCategoryID] PRIMARY KEY CLUSTERED ([ProductCategoryID] ASC)
 );
@@ -350,7 +350,7 @@ CREATE TABLE  [Production].[ProductSubcategory](
     [ProductSubcategoryID] [int] IDENTITY(1,1) NOT NULL,
     [ProductCategoryID] [int] NOT NULL,
     [Name] [nvarchar](50) NOT NULL,
-    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL,
+    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_ProductSubcategory_ProductSubcategoryID] PRIMARY KEY CLUSTERED ([ProductSubcategoryID] ASC)
 );
@@ -363,7 +363,7 @@ CREATE TABLE  [Production].[ProductModel](
     [Name] [nvarchar](50) NOT NULL,
     [CatalogDescription] [xml] NULL,
     [Instructions] [xml] NULL,
-    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL,
+    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_ProductModel_ProductModelID] PRIMARY KEY CLUSTERED ([ProductModelID] ASC)
 );
@@ -394,7 +394,7 @@ CREATE TABLE  [Production].[Product](
     [SellStartDate] [datetime] NOT NULL,
     [SellEndDate] [datetime] NULL,
     [DiscontinuedDate] [datetime] NULL,
-    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL,
+    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_Product_ProductID] PRIMARY KEY CLUSTERED ([ProductID] ASC)
 );
