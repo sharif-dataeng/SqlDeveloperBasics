@@ -1,0 +1,10 @@
+{
+  "servers": {
+    "sql-helper": {
+      "type": "stdio",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["mcp_server/server.py"],
+      "cwd": "${workspaceFolder}"
+    }
+  }
+}
