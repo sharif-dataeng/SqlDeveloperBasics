@@ -137,8 +137,16 @@ VALUES
 
 -- =========================
 -- 6) BusinessEntity / BusinessEntityAddress
---    (BusinessEntity rows assumed present; Address/AddressType required)
+--    (BusinessEntity rows must exist before Person, PersonPhone, EmailAddress, etc.)
 -- =========================
+
+INSERT INTO Person.BusinessEntity (rowguid, ModifiedDate)
+VALUES
+(NEWID(), GETDATE()),
+(NEWID(), GETDATE()),
+(NEWID(), GETDATE()),
+(NEWID(), GETDATE()),
+(NEWID(), GETDATE());
 
 --select * from Person.BusinessEntity
 
