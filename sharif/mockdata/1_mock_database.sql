@@ -169,8 +169,8 @@ CREATE TABLE  [Person].[Person](
   [LastName] [nvarchar](50) NOT NULL,
     [Suffix] [nvarchar](10) NULL,
     [EmailPromotion] [int] NOT NULL,
-    [AdditionalContactInfo] [xml] NULL,
-    [Demographics] [xml] NULL,
+    [AdditionalContactInfo] [varchar](max) NULL,
+    [Demographics] [varchar](max) NULL,
     [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_Person_BusinessEntityID] PRIMARY KEY CLUSTERED ([BusinessEntityID] ASC)
@@ -361,8 +361,8 @@ GO
 CREATE TABLE  [Production].[ProductModel](
     [ProductModelID] [int] IDENTITY(1,1) NOT NULL,
     [Name] [nvarchar](50) NOT NULL,
-    [CatalogDescription] [xml] NULL,
-    [Instructions] [xml] NULL,
+    [CatalogDescription] [varchar](max) NULL,
+    [Instructions] [varchar](max) NULL,
     [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
     [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
  CONSTRAINT [PK_ProductModel_ProductModelID] PRIMARY KEY CLUSTERED ([ProductModelID] ASC)
