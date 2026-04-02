@@ -50,23 +50,6 @@ CREATE TABLE [dbo].[FactSales](
 );
 GO
 
--- Create indexes on fact table
-CREATE NONCLUSTERED INDEX [IX_FactSales_CustomerKey] 
-ON [dbo].[FactSales] ([CustomerKey]);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_FactSales_ProductKey] 
-ON [dbo].[FactSales] ([ProductKey]);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_FactSales_OrderDateKey] 
-ON [dbo].[FactSales] ([OrderDateKey]);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_FactSales_EmployeeKey] 
-ON [dbo].[FactSales] ([EmployeeKey]);
-GO
-
 /* ===== FactInventory =====
    Purpose: Snapshot fact table for inventory levels
    Grain: One row per product per date
@@ -106,19 +89,6 @@ CREATE TABLE [dbo].[FactInventory](
     CONSTRAINT [PK_FactInventory_FactInventoryKey] PRIMARY KEY CLUSTERED ([FactInventoryKey] ASC),
     CONSTRAINT [FK_FactInventory_Product] FOREIGN KEY ([ProductKey]) REFERENCES [dbo].[DimProduct]([ProductKey])
 );
-GO
-
--- Create indexes on inventory fact table
-CREATE NONCLUSTERED INDEX [IX_FactInventory_ProductKey] 
-ON [dbo].[FactInventory] ([ProductKey]);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_FactInventory_InventoryDateKey] 
-ON [dbo].[FactInventory] ([InventoryDateKey]);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_FactInventory_InventoryStatus] 
-ON [dbo].[FactInventory] ([InventoryStatus]);
 GO
 
 /* ===== FactProductionCost =====
@@ -175,23 +145,6 @@ CREATE TABLE [dbo].[FactProductionCost](
     CONSTRAINT [FK_FactProductionCost_Product] FOREIGN KEY ([ProductKey]) REFERENCES [dbo].[DimProduct]([ProductKey]),
     CONSTRAINT [FK_FactProductionCost_Employee] FOREIGN KEY ([EmployeeKey]) REFERENCES [dbo].[DimEmployee]([EmployeeKey])
 );
-GO
-
--- Create indexes on production cost fact table
-CREATE NONCLUSTERED INDEX [IX_FactProductionCost_ProductKey] 
-ON [dbo].[FactProductionCost] ([ProductKey]);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_FactProductionCost_EmployeeKey] 
-ON [dbo].[FactProductionCost] ([EmployeeKey]);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_FactProductionCost_ProductionDateKey] 
-ON [dbo].[FactProductionCost] ([ProductionDateKey]);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_FactProductionCost_ProductionStatus] 
-ON [dbo].[FactProductionCost] ([ProductionStatus]);
 GO
 
 PRINT 'All fact tables created successfully!';

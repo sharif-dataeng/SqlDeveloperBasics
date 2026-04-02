@@ -120,39 +120,4 @@ CREATE TABLE [dbo].[DimProduct](
 );
 GO
 
-/* ===== INDEXES for Performance =====
-   Create indexes on frequently queried columns
-*/
-
--- DimCustomer indexes
-CREATE NONCLUSTERED INDEX [IX_DimCustomer_CustomerAlternateKey] 
-ON [dbo].[DimCustomer] ([CustomerAlternateKey]);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_DimCustomer_StateProvinceID] 
-ON [dbo].[DimCustomer] ([StateProvinceID]);
-GO
-
--- DimEmployee indexes
-CREATE NONCLUSTERED INDEX [IX_DimEmployee_BusinessEntityID] 
-ON [dbo].[DimEmployee] ([BusinessEntityID]);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_DimEmployee_DepartmentID] 
-ON [dbo].[DimEmployee] ([DepartmentID]);
-GO
-
--- DimProduct indexes
-CREATE NONCLUSTERED INDEX [IX_DimProduct_ProductAlternateKey] 
-ON [dbo].[DimProduct] ([ProductAlternateKey]);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_DimProduct_ProductCategoryID] 
-ON [dbo].[DimProduct] ([ProductCategoryID]);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_DimProduct_ProductSubcategoryID] 
-ON [dbo].[DimProduct] ([ProductSubcategoryID]);
-GO
-
 /* ===== END OF DIMENSION TABLES =====*/
