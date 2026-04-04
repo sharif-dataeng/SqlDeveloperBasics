@@ -90,6 +90,13 @@ foreach ($adf in $adfResources) {
 }
 
 # -----------------------------------------------------------
+# Gather Databricks Workspaces
+# -----------------------------------------------------------
+Write-Host "Scanning Databricks workspaces..." -ForegroundColor White
+$databricksWorkspaces = $resources | Where-Object { $_.type -eq "Microsoft.Databricks/workspaces" }
+$databricksConnectors = $resources | Where-Object { $_.type -eq "Microsoft.Databricks/accessConnectors" }
+
+# -----------------------------------------------------------
 # Generate the setup script
 # -----------------------------------------------------------
 Write-Host "`nGenerating setup script: $OUTPUT_FILE" -ForegroundColor Cyan
@@ -231,8 +238,22 @@ foreach ($adf in $adfResources) {
     $script += "Write-Host `"Created Data Factory: $($adf.name)`" -ForegroundColor Green`n`n"
 }
 
+# Databricks Workspaces
+foreach ($db in $databricksWorkspaces) {
+    $script += "# Create Databricks Workspace: $($db.name)`n"
+    $script += "az resource create --resource-group `"$($db.resourceGroup)`" --resource-type `"Microsoft.Databricks/workspaces`" --name `"$($db.name)`" --location `"$($db.location)`" --properties '{`"managedResourceGroupId`":`"/subscriptions/`$SUBSCRIPTION_ID/resourceGroups/$($db.resourceGroup)-managed`"}' -o none`n"
+    $script += "Write-Host `"Created Databricks Workspace: $($db.name)`" -ForegroundColor Green`n`n"
+}
+
+# Databricks Access Connectors
+foreach ($dac in $databricksConnectors) {
+    $script += "# Create Databricks Access Connector: $($dac.name)`n"
+    $script += "az resource create --resource-group `"$($dac.resourceGroup)`" --resource-type `"Microsoft.Databricks/accessConnectors`" --name `"$($dac.name)`" --location `"$($dac.location)`" --properties '{}' -o none`n"
+    $script += "Write-Host `"Created Databricks Access Connector: $($dac.name)`" -ForegroundColor Green`n`n"
+}
+
 # Other resources
-$knownTypes = @("Microsoft.Storage/storageAccounts", "Microsoft.KeyVault/vaults", "Microsoft.DataFactory/factories")
+$knownTypes = @("Microsoft.Storage/storageAccounts", "Microsoft.KeyVault/vaults", "Microsoft.DataFactory/factories", "Microsoft.Databricks/workspaces", "Microsoft.Databricks/accessConnectors")
 $otherResources = $resources | Where-Object { $_.type -notin $knownTypes }
 foreach ($res in $otherResources) {
     $script += "# TODO: Manually create resource: $($res.name) (Type: $($res.type))`n"
@@ -266,7 +287,7 @@ if (`$groupId) {
         $adfMatch = $adfIdentities.GetEnumerator() | Where-Object { $_.Value -eq $ra.principalId }
         if ($adfMatch) {
             $script += @"
-`$adfPrincipalId = az resource show --ids `"/subscriptions/`$SUBSCRIPTION_ID/resourceGroups/$($adfMatch.Name.Split('/')[0] ?? $RESOURCE_GROUP)/providers/Microsoft.DataFactory/factories/$($adfMatch.Key)`" --query `"identity.principalId`" -o tsv 2>`$null
+`$adfPrincipalId = az resource show --ids `"/subscriptions/`$SUBSCRIPTION_ID/resourceGroups/$($adfMatch.Name.Split('/')[0])/providers/Microsoft.DataFactory/factories/$($adfMatch.Key)`" --query `"identity.principalId`" -o tsv 2>`$null
 if (`$adfPrincipalId) {
     az role assignment create --role `"$($ra.roleDefinitionName)`" --assignee-object-id `$adfPrincipalId --assignee-principal-type ServicePrincipal --scope `"/subscriptions/`$SUBSCRIPTION_ID$($scope -replace '/subscriptions/\$\{SUBSCRIPTION_ID\}', '')`" -o none
     Write-Host `"Assigned '$($ra.roleDefinitionName)' to ADF '$($adfMatch.Key)' managed identity`" -ForegroundColor Green
