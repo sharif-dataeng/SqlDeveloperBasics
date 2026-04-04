@@ -46,37 +46,41 @@ CREATE TABLE #SalesData(
 );
 
 -- Simulate sales transactions by creating sample orders
+WITH SalesTemp AS (
+    SELECT
+        ROW_NUMBER() OVER (ORDER BY c.CustomerID, p.ProductID) AS OrderID,
+        1 AS LineNumber,
+        c.CustomerID,
+        p.ProductID,
+        CASE WHEN e.BusinessEntityID IS NOT NULL THEN e.BusinessEntityID ELSE NULL END AS EmployeeID,
+        DATEADD(DAY, -ABS(CHECKSUM(NEWID()) % 365), GETDATE()) AS OrderDate,
+        DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 30), GETDATE()) AS ShipDate,
+        DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 15), GETDATE()) AS DueDate,
+        ABS(CHECKSUM(NEWID()) % 50) + 1 AS OrderQuantity,
+        p.ListPrice AS UnitPrice,
+        CASE WHEN ABS(CHECKSUM(NEWID()) % 100) > 80 THEN 0.10 ELSE 0.00 END AS DiscountPercent,
+        p.ListPrice * (ABS(CHECKSUM(NEWID()) % 10) / 100.0) AS TaxAmount,
+        CASE WHEN ABS(CHECKSUM(NEWID()) % 100) > 70 THEN 50.00 ELSE 0.00 END AS FreightAmount,
+        'TRK-' + SUBSTRING(CAST(NEWID() AS VARCHAR(36)), 1, 12) AS CarrierTrackingNumber,
+        CASE ABS(CHECKSUM(NEWID()) % 4)
+            WHEN 0 THEN 'Pending'
+            WHEN 1 THEN 'Shipped'
+            WHEN 2 THEN 'Delivered'
+            ELSE 'Completed'
+        END AS OrderStatus,
+        CASE ABS(CHECKSUM(NEWID()) % 3)
+            WHEN 0 THEN 'Standard'
+            WHEN 1 THEN 'Express'
+            ELSE 'Overnight'
+        END AS ShipMethod
+    FROM [Sales].[Customer] c
+    CROSS JOIN [Production].[Product] p
+    LEFT JOIN [HumanResources].[Employee] e ON ABS(CHECKSUM(NEWID()) % 100) > 50
+)
 INSERT INTO #SalesData
-SELECT
-    ROW_NUMBER() OVER (ORDER BY c.CustomerID, p.ProductID) AS OrderID,
-    1 AS LineNumber,
-    c.CustomerID,
-    p.ProductID,
-    CASE WHEN e.BusinessEntityID IS NOT NULL THEN e.BusinessEntityID ELSE NULL END AS EmployeeID,
-    DATEADD(DAY, -ABS(CHECKSUM(NEWID()) % 365), GETDATE()) AS OrderDate,
-    DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 30), GETDATE()) AS ShipDate,
-    DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 15), GETDATE()) AS DueDate,
-    ABS(CHECKSUM(NEWID()) % 50) + 1 AS OrderQuantity,
-    p.ListPrice AS UnitPrice,
-    CASE WHEN ABS(CHECKSUM(NEWID()) % 100) > 80 THEN 0.10 ELSE 0.00 END AS DiscountPercent,
-    p.ListPrice * (ABS(CHECKSUM(NEWID()) % 10) / 100.0) AS TaxAmount,
-    CASE WHEN ABS(CHECKSUM(NEWID()) % 100) > 70 THEN 50.00 ELSE 0.00 END AS FreightAmount,
-    SUBSTRING(MD5(CAST(RAND() AS VARCHAR(100))), 1, 15) AS CarrierTrackingNumber,
-    CASE ABS(CHECKSUM(NEWID()) % 4)
-        WHEN 0 THEN 'Pending'
-        WHEN 1 THEN 'Shipped'
-        WHEN 2 THEN 'Delivered'
-        ELSE 'Completed'
-    END AS OrderStatus,
-    CASE ABS(CHECKSUM(NEWID()) % 3)
-        WHEN 0 THEN 'Standard'
-        WHEN 1 THEN 'Express'
-        ELSE 'Overnight'
-    END AS ShipMethod
-FROM [Sales].[Customer] c
-CROSS JOIN [Production].[Product] p
-LEFT JOIN [HumanResources].[Employee] e ON ABS(CHECKSUM(NEWID()) % 100) > 50
-WHERE ROW_NUMBER() OVER (ORDER BY c.CustomerID, p.ProductID) <= 500;  -- Limit to 500 sample records
+SELECT *
+FROM SalesTemp
+WHERE OrderID <= 500;
 
 -- Merge into FactSales
 MERGE INTO [dbo].[FactSales] AS target
