@@ -1,6 +1,6 @@
 ﻿# ============================================================
 # Azure Environment Setup Script (Auto-Generated)
-# Generated on: 2026-04-04 11:30:36
+# Generated on: 2026-04-04 12:20:11
 # Source Subscription: Azure subscription 1 (95186feb-cef2-4892-8f87-05ea95df47ba)
 # ============================================================
 # Prerequisites: Azure CLI installed and logged in (az login)
@@ -186,32 +186,44 @@ Write-Host "Created storage account: adwmstrg1" -ForegroundColor Green
 az storage account create --name "adwmstrg2" --resource-group "adwm" --location "southindia" --sku "Standard_LRS" -o none
 Write-Host "Created storage account: adwmstrg2" -ForegroundColor Green
 
-az storage account create --name "dbstorageivilwar76kmrg" --resource-group "adwm-adb" --location "centralus" --sku "Standard_ZRS" -o none
+az storage account create --name "dbstorageivilwar76kmrg" --resource-group "adwm" --location "southindia" --sku "Standard_ZRS" -o none
 Write-Host "Created storage account: dbstorageivilwar76kmrg" -ForegroundColor Green
 
 az keyvault create --name "adwm-kv" --resource-group "adwm" --location "southindia" --enable-rbac-authorization true -o none
 Write-Host "Created Key Vault: adwm-kv" -ForegroundColor Green
 
-az keyvault create --name "shravya" --resource-group "adwm" --location "eastus" --enable-rbac-authorization true -o none
+az keyvault create --name "shravya" --resource-group "adwm" --location "southindia" --enable-rbac-authorization true -o none
 Write-Host "Created Key Vault: shravya" -ForegroundColor Green
 
 az resource create --resource-group "adwm" --resource-type "Microsoft.DataFactory/factories" --name "adwm-etl-dev" --location "southindia" --properties '{"publicNetworkAccess":"Enabled"}' -o none
 Write-Host "Created Data Factory: adwm-etl-dev" -ForegroundColor Green
 
+# Create SQL Servers
+$adminLogin = "sqladmin"
+$adminPassword = "P@ssw0rd!2026"
+
+Write-Host "Creating SQL Servers..." -ForegroundColor Cyan
+az sql server create --name "adwm-dev" --resource-group "adwm" --location "southindia" --admin-user $adminLogin --admin-password $adminPassword -o none
+Write-Host "Created SQL Server: adwm-dev" -ForegroundColor Green
+
+az sql server create --name "adwm-prod" --resource-group "adwm" --location "southindia" --admin-user $adminLogin --admin-password $adminPassword -o none
+Write-Host "Created SQL Server: adwm-prod" -ForegroundColor Green
+
+# Create SQL Databases
+Write-Host "Creating SQL Databases..." -ForegroundColor Cyan
+az sql db create --name "adwm-raw-db" --server "adwm-dev" --resource-group "adwm" --edition Standard --capacity 10 -o none
+Write-Host "Created Database: adwm-raw-db" -ForegroundColor Green
+
+az sql db create --name "adwm-db" --server "adwm-prod" --resource-group "adwm" --edition Standard --capacity 10 -o none
+Write-Host "Created Database: adwm-db" -ForegroundColor Green
 # Create Databricks Workspace: adwm-etl-dev
 az resource create --resource-group "adwm" --resource-type "Microsoft.Databricks/workspaces" --name "adwm-etl-dev" --location "centralus" --properties '{"managedResourceGroupId":"/subscriptions/$SUBSCRIPTION_ID/resourceGroups/adwm-managed"}' -o none
 Write-Host "Created Databricks Workspace: adwm-etl-dev" -ForegroundColor Green
 
 # Create Databricks Access Connector: unity-catalog-access-connector
-az resource create --resource-group "adwm-adb" --resource-type "Microsoft.Databricks/accessConnectors" --name "unity-catalog-access-connector" --location "centralus" --properties '{}' -o none
+az resource create --resource-group "adwm" --resource-type "Microsoft.Databricks/accessConnectors" --name "unity-catalog-access-connector" --location "southindia" --properties '{}' -o none
 Write-Host "Created Databricks Access Connector: unity-catalog-access-connector" -ForegroundColor Green
 
-# TODO: Manually create resource: dev1db (Type: Microsoft.Sql/servers)
-# TODO: Manually create resource: dev1db/master (Type: Microsoft.Sql/servers/databases)
-# TODO: Manually create resource: dev1db/dev1db (Type: Microsoft.Sql/servers/databases)
-# TODO: Manually create resource: proddb1 (Type: Microsoft.Sql/servers)
-# TODO: Manually create resource: proddb1/master (Type: Microsoft.Sql/servers/databases)
-# TODO: Manually create resource: proddb1/proddb (Type: Microsoft.Sql/servers/databases)
 # TODO: Manually create resource: data-engineering-resource (Type: Microsoft.CognitiveServices/accounts)
 # TODO: Manually create resource: data-engineering-resource/data-engineering (Type: Microsoft.CognitiveServices/accounts/projects)
 # TODO: Manually create resource: dbmanagedidentity (Type: Microsoft.ManagedIdentity/userAssignedIdentities)
@@ -281,7 +293,7 @@ Write-Host ""
 Write-Host "Resources: 22 resources created" -ForegroundColor White
 Write-Host "Users: 9 users" -ForegroundColor White
 Write-Host "Groups: 1 groups" -ForegroundColor White
-Write-Host "Role Assignments: 10 assignments" -ForegroundColor White
+Write-Host "Role Assignments: 12 assignments" -ForegroundColor White
 Write-Host ""
 Write-Host "NOTE: Role assignments may take 5-10 minutes to propagate." -ForegroundColor Yellow
 Write-Host "============================================" -ForegroundColor Cyan

@@ -97,6 +97,59 @@ $databricksWorkspaces = $resources | Where-Object { $_.type -eq "Microsoft.Datab
 $databricksConnectors = $resources | Where-Object { $_.type -eq "Microsoft.Databricks/accessConnectors" }
 
 # -----------------------------------------------------------
+# Gather SQL Servers and Databases
+# -----------------------------------------------------------
+Write-Host "Scanning SQL Servers..." -ForegroundColor White
+$sqlServers = $resources | Where-Object { $_.type -eq "Microsoft.Sql/servers" }
+$sqlDatabases = $resources | Where-Object { $_.type -eq "Microsoft.Sql/servers/databases" }
+
+# -----------------------------------------------------------
+# CONSOLIDATE: Force all resources to use 'adwm' resource group
+# -----------------------------------------------------------
+Write-Host "Consolidating all resources to 'adwm' resource group..." -ForegroundColor Yellow
+
+# Create adwm resource group if missing
+$adwmRgExists = $resourceGroups | Where-Object { $_.name -eq "adwm" }
+if (-not $adwmRgExists) {
+    $resourceGroups += @{ name = "adwm"; location = "southindia" }
+}
+
+# Consolidate Storage Accounts
+foreach ($sa in $storageAccounts) {
+    $sa.resourceGroup = "adwm"
+    $sa.location = "southindia"  # Standardize location for consistency
+}
+
+# Consolidate Key Vaults
+foreach ($kv in $keyVaults) {
+    $kv.resourceGroup = "adwm"
+    $kv.location = "southindia"  # Standardize location for consistency
+}
+
+# Consolidate Data Factory resources
+foreach ($adf in $adfResources) {
+    $adf.resourceGroup = "adwm"
+    $adf.location = "southindia"  # Standardize location for consistency
+}
+
+# Consolidate SQL Servers
+foreach ($sql in $sqlServers) {
+    $sql.resourceGroup = "adwm"
+    $sql.location = "southindia"  # Standardize location for consistency
+}
+
+# Consolidate Databricks Workspaces
+foreach ($db in $databricksWorkspaces) {
+    $db.resourceGroup = "adwm"
+}
+
+# Consolidate Databricks Access Connectors
+foreach ($dac in $databricksConnectors) {
+    $dac.resourceGroup = "adwm"
+    $dac.location = "southindia"  # Standardize location for consistency
+}
+
+# -----------------------------------------------------------
 # Generate the setup script
 # -----------------------------------------------------------
 Write-Host "`nGenerating setup script: $OUTPUT_FILE" -ForegroundColor Cyan
@@ -238,6 +291,29 @@ foreach ($adf in $adfResources) {
     $script += "Write-Host `"Created Data Factory: $($adf.name)`" -ForegroundColor Green`n`n"
 }
 
+# SQL Servers
+$script += @"
+# Create SQL Servers
+`$adminLogin = `"sqladmin`"
+`$adminPassword = `"P@ssw0rd!2026`"
+
+Write-Host `"Creating SQL Servers...`" -ForegroundColor Cyan
+az sql server create --name `"adwm-dev`" --resource-group `"adwm`" --location `"southindia`" --admin-user `$adminLogin --admin-password `$adminPassword -o none
+Write-Host `"Created SQL Server: adwm-dev`" -ForegroundColor Green
+
+az sql server create --name `"adwm-prod`" --resource-group `"adwm`" --location `"southindia`" --admin-user `$adminLogin --admin-password `$adminPassword -o none
+Write-Host `"Created SQL Server: adwm-prod`" -ForegroundColor Green
+
+# Create SQL Databases
+Write-Host `"Creating SQL Databases...`" -ForegroundColor Cyan
+az sql db create --name `"adwm-raw-db`" --server `"adwm-dev`" --resource-group `"adwm`" --edition Standard --capacity 10 -o none
+Write-Host `"Created Database: adwm-raw-db`" -ForegroundColor Green
+
+az sql db create --name `"adwm-db`" --server `"adwm-prod`" --resource-group `"adwm`" --edition Standard --capacity 10 -o none
+Write-Host `"Created Database: adwm-db`" -ForegroundColor Green
+
+"@
+
 # Databricks Workspaces
 foreach ($db in $databricksWorkspaces) {
     $script += "# Create Databricks Workspace: $($db.name)`n"
@@ -253,7 +329,7 @@ foreach ($dac in $databricksConnectors) {
 }
 
 # Other resources
-$knownTypes = @("Microsoft.Storage/storageAccounts", "Microsoft.KeyVault/vaults", "Microsoft.DataFactory/factories", "Microsoft.Databricks/workspaces", "Microsoft.Databricks/accessConnectors")
+$knownTypes = @("Microsoft.Storage/storageAccounts", "Microsoft.KeyVault/vaults", "Microsoft.DataFactory/factories", "Microsoft.Databricks/workspaces", "Microsoft.Databricks/accessConnectors", "Microsoft.Sql/servers", "Microsoft.Sql/servers/databases")
 $otherResources = $resources | Where-Object { $_.type -notin $knownTypes }
 foreach ($res in $otherResources) {
     $script += "# TODO: Manually create resource: $($res.name) (Type: $($res.type))`n"
