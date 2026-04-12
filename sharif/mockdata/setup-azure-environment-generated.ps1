@@ -35,59 +35,59 @@ Write-Host "Created resource group: NetworkWatcherRG (centralus)" -ForegroundCol
 # STEP 2: Create Users
 # -----------------------------------------------------------
 Write-Host "`n========== STEP 2: Creating Users ==========" -ForegroundColor Cyan
-$existing = az ad user show --id "akhil@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$existing = az ad user show --id "akhil@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if (-not $existing) {
-    az ad user create --display-name "akhil" --user-principal-name "akhil@benarjikumar7gmail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
+    az ad user create --display-name "akhil" --user-principal-name "akhil@sharifskzohomail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
     Write-Host "Created user: akhil" -ForegroundColor Green
 } else {
     Write-Host "User already exists: akhil" -ForegroundColor Yellow
 }
-$existing = az ad user show --id "aliaya@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$existing = az ad user show --id "aliaya@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if (-not $existing) {
-    az ad user create --display-name "aliaya" --user-principal-name "aliaya@benarjikumar7gmail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
+    az ad user create --display-name "aliaya" --user-principal-name "aliaya@sharifskzohomail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
     Write-Host "Created user: aliaya" -ForegroundColor Green
 } else {
     Write-Host "User already exists: aliaya" -ForegroundColor Yellow
 }
-# External user (invite manually): Benarji Kumar (benarjikumar7_gmail.com#EXT#@benarjikumar7gmail.onmicrosoft.com)
-$existing = az ad user show --id "madhan@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+# External user (invite manually): Benarji Kumar (benarjikumar7_gmail.com#EXT#@sharifskzohomail.onmicrosoft.com)
+$existing = az ad user show --id "madhan@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if (-not $existing) {
-    az ad user create --display-name "madhan" --user-principal-name "madhan@benarjikumar7gmail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
+    az ad user create --display-name "madhan" --user-principal-name "madhan@sharifskzohomail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
     Write-Host "Created user: madhan" -ForegroundColor Green
 } else {
     Write-Host "User already exists: madhan" -ForegroundColor Yellow
 }
-$existing = az ad user show --id "rajurao@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$existing = az ad user show --id "rajurao@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if (-not $existing) {
-    az ad user create --display-name "rajurao" --user-principal-name "rajurao@benarjikumar7gmail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
+    az ad user create --display-name "rajurao" --user-principal-name "rajurao@sharifskzohomail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
     Write-Host "Created user: rajurao" -ForegroundColor Green
 } else {
     Write-Host "User already exists: rajurao" -ForegroundColor Yellow
 }
-$existing = az ad user show --id "sharif@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$existing = az ad user show --id "benarjikumar@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if (-not $existing) {
-    az ad user create --display-name "sharif" --user-principal-name "sharif@benarjikumar7gmail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
-    Write-Host "Created user: sharif" -ForegroundColor Green
+    az ad user create --display-name "benarjikumar" --user-principal-name "benarjikumar@sharifskzohomail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
+    Write-Host "Created user: benarjikumar" -ForegroundColor Green
 } else {
-    Write-Host "User already exists: sharif" -ForegroundColor Yellow
+    Write-Host "User already exists: benarjikumar" -ForegroundColor Yellow
 }
-$existing = az ad user show --id "shravya@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$existing = az ad user show --id "shravya@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if (-not $existing) {
-    az ad user create --display-name "shravya" --user-principal-name "shravya@benarjikumar7gmail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
+    az ad user create --display-name "shravya" --user-principal-name "shravya@sharifskzohomail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
     Write-Host "Created user: shravya" -ForegroundColor Green
 } else {
     Write-Host "User already exists: shravya" -ForegroundColor Yellow
 }
-$existing = az ad user show --id "trinadh@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$existing = az ad user show --id "trinadh@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if (-not $existing) {
-    az ad user create --display-name "trinadh" --user-principal-name "trinadh@benarjikumar7gmail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
+    az ad user create --display-name "trinadh" --user-principal-name "trinadh@sharifskzohomail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
     Write-Host "Created user: trinadh" -ForegroundColor Green
 } else {
     Write-Host "User already exists: trinadh" -ForegroundColor Yellow
 }
-$existing = az ad user show --id "victoria@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$existing = az ad user show --id "victoria@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if (-not $existing) {
-    az ad user create --display-name "victoria" --user-principal-name "victoria@benarjikumar7gmail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
+    az ad user create --display-name "victoria" --user-principal-name "victoria@sharifskzohomail.onmicrosoft.com" --password "P@ssw0rd!Change" --force-change-password-next-sign-in false -o none
     Write-Host "Created user: victoria" -ForegroundColor Green
 } else {
     Write-Host "User already exists: victoria" -ForegroundColor Yellow
@@ -104,23 +104,23 @@ if (-not $groupId) {
     Write-Host "Group already exists: DataEngineers" -ForegroundColor Yellow
 }
 # Add members to DataEngineers
-$memberId = az ad user show --id "benarjikumar7_gmail.com#EXT#@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$memberId = az ad user show --id "sharif.sk_zohomail.in#EXT#@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if ($memberId) {
     $isMember = az ad group member check --group "DataEngineers" --member-id $memberId --query "value" -o tsv 2>$null
     if ($isMember -ne "true") {
         az ad group member add --group "DataEngineers" --member-id $memberId 2>$null
-        Write-Host "  Added Benarji Kumar to DataEngineers" -ForegroundColor Green
+        Write-Host "  Added sharif sk to DataEngineers" -ForegroundColor Green
     }
 }
-$memberId = az ad user show --id "sharif@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$memberId = az ad user show --id "benarjikumar@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if ($memberId) {
     $isMember = az ad group member check --group "DataEngineers" --member-id $memberId --query "value" -o tsv 2>$null
     if ($isMember -ne "true") {
         az ad group member add --group "DataEngineers" --member-id $memberId 2>$null
-        Write-Host "  Added sharif to DataEngineers" -ForegroundColor Green
+        Write-Host "  Added benarjikumar to DataEngineers" -ForegroundColor Green
     }
 }
-$memberId = az ad user show --id "akhil@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$memberId = az ad user show --id "akhil@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if ($memberId) {
     $isMember = az ad group member check --group "DataEngineers" --member-id $memberId --query "value" -o tsv 2>$null
     if ($isMember -ne "true") {
@@ -128,7 +128,7 @@ if ($memberId) {
         Write-Host "  Added akhil to DataEngineers" -ForegroundColor Green
     }
 }
-$memberId = az ad user show --id "madhan@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$memberId = az ad user show --id "madhan@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if ($memberId) {
     $isMember = az ad group member check --group "DataEngineers" --member-id $memberId --query "value" -o tsv 2>$null
     if ($isMember -ne "true") {
@@ -136,7 +136,7 @@ if ($memberId) {
         Write-Host "  Added madhan to DataEngineers" -ForegroundColor Green
     }
 }
-$memberId = az ad user show --id "rajurao@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$memberId = az ad user show --id "rajurao@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if ($memberId) {
     $isMember = az ad group member check --group "DataEngineers" --member-id $memberId --query "value" -o tsv 2>$null
     if ($isMember -ne "true") {
@@ -144,7 +144,7 @@ if ($memberId) {
         Write-Host "  Added rajurao to DataEngineers" -ForegroundColor Green
     }
 }
-$memberId = az ad user show --id "aliaya@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$memberId = az ad user show --id "aliaya@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if ($memberId) {
     $isMember = az ad group member check --group "DataEngineers" --member-id $memberId --query "value" -o tsv 2>$null
     if ($isMember -ne "true") {
@@ -152,7 +152,7 @@ if ($memberId) {
         Write-Host "  Added aliaya to DataEngineers" -ForegroundColor Green
     }
 }
-$memberId = az ad user show --id "shravya@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$memberId = az ad user show --id "shravya@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if ($memberId) {
     $isMember = az ad group member check --group "DataEngineers" --member-id $memberId --query "value" -o tsv 2>$null
     if ($isMember -ne "true") {
@@ -160,7 +160,7 @@ if ($memberId) {
         Write-Host "  Added shravya to DataEngineers" -ForegroundColor Green
     }
 }
-$memberId = az ad user show --id "trinadh@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$memberId = az ad user show --id "trinadh@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if ($memberId) {
     $isMember = az ad group member check --group "DataEngineers" --member-id $memberId --query "value" -o tsv 2>$null
     if ($isMember -ne "true") {
@@ -168,7 +168,7 @@ if ($memberId) {
         Write-Host "  Added trinadh to DataEngineers" -ForegroundColor Green
     }
 }
-$memberId = az ad user show --id "victoria@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$memberId = az ad user show --id "victoria@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if ($memberId) {
     $isMember = az ad group member check --group "DataEngineers" --member-id $memberId --query "value" -o tsv 2>$null
     if ($isMember -ne "true") {
@@ -185,9 +185,6 @@ Write-Host "Created storage account: adwmstrg1" -ForegroundColor Green
 
 az storage account create --name "adwmstrg2" --resource-group "adwm" --location "southindia" --sku "Standard_LRS" -o none
 Write-Host "Created storage account: adwmstrg2" -ForegroundColor Green
-
-az storage account create --name "dbstorageivilwar76kmrg" --resource-group "adwm" --location "southindia" --sku "Standard_ZRS" -o none
-Write-Host "Created storage account: dbstorageivilwar76kmrg" -ForegroundColor Green
 
 az keyvault create --name "adwm-kv" --resource-group "adwm" --location "southindia" --enable-rbac-authorization true -o none
 Write-Host "Created Key Vault: adwm-kv" -ForegroundColor Green
@@ -272,15 +269,15 @@ if ($adfPrincipalId) {
     az role assignment create --role "Key Vault Secrets User" --assignee-object-id $adfPrincipalId --assignee-principal-type ServicePrincipal --scope "/subscriptions/$SUBSCRIPTION_ID/resourcegroups/adwm/providers/Microsoft.KeyVault/vaults/adwm-kv" -o none
     Write-Host "Assigned 'Key Vault Secrets User' to ADF 'adwm-etl-dev' managed identity" -ForegroundColor Green
 }
-$userId = az ad user show --id "akhil@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$userId = az ad user show --id "akhil@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if ($userId) {
     az role assignment create --role "Azure AI User" --assignee-object-id $userId --assignee-principal-type User --scope "/subscriptions/$SUBSCRIPTION_ID" -o none
-    Write-Host "Assigned 'Azure AI User' to user 'akhil@benarjikumar7gmail.onmicrosoft.com'" -ForegroundColor Green
+    Write-Host "Assigned 'Azure AI User' to user 'akhil@sharifskzohomail.onmicrosoft.com'" -ForegroundColor Green
 }
-$userId = az ad user show --id "akhil@benarjikumar7gmail.onmicrosoft.com" --query "id" -o tsv 2>$null
+$userId = az ad user show --id "akhil@sharifskzohomail.onmicrosoft.com" --query "id" -o tsv 2>$null
 if ($userId) {
     az role assignment create --role "Azure AI User" --assignee-object-id $userId --assignee-principal-type User --scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/adwm" -o none
-    Write-Host "Assigned 'Azure AI User' to user 'akhil@benarjikumar7gmail.onmicrosoft.com'" -ForegroundColor Green
+    Write-Host "Assigned 'Azure AI User' to user 'akhil@sharifskzohomail.onmicrosoft.com'" -ForegroundColor Green
 }
 
 # -----------------------------------------------------------
