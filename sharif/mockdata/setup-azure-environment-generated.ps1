@@ -9,7 +9,7 @@
 # IMPORTANT: Update SUBSCRIPTION_ID before running!
 # ============================================================
 
-$SUBSCRIPTION_ID = "<YOUR_NEW_SUBSCRIPTION_ID>"  # <-- UPDATE THIS
+$SUBSCRIPTION_ID = "003d3e8c-576e-4033-837c-2b77b3dcd3fe"  # <-- UPDATE THIS
 
 # -----------------------------------------------------------
 # STEP 0: Set Subscription
