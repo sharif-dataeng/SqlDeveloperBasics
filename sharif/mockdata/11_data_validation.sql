@@ -100,6 +100,7 @@ UPDATE dbo.DataLoad_Control SET loadtype = 'I' WHERE schemaname = 'HumanResource
 UPDATE dbo.DataLoad_Control SET loadtype = 'I' WHERE schemaname = 'Person' AND tablename = 'Person';
 UPDATE dbo.DataLoad_Control SET loadtype = 'I' WHERE schemaname = 'Person' AND tablename = 'PersonPhone';
 UPDATE dbo.DataLoad_Control SET loadtype = 'I' WHERE schemaname = 'Production' AND tablename = 'Product';
+UPDATE dbo.DataLoad_Control SET loadtype = 'I' WHERE schemaname = 'Sales' AND tablename = 'Store';
 
 -- Set full ('F') tables (explicit to ensure correct values)
 UPDATE dbo.DataLoad_Control SET loadtype = 'F' WHERE schemaname = 'Person' AND tablename = 'AddressType';
@@ -119,7 +120,7 @@ WHERE (schemaname IN ('Person','Sales','HumanResources','Production'))
 	AND tablename IN (
 		'Address','AddressType','BusinessEntity','BusinessEntityAddress','CountryRegion','Customer',
 		'Department','EmailAddress','Employee','EmployeeDepartmentHistory','Person','PersonPhone','PhoneNumberType',
-		'Product','ProductCategory','ProductModel','ProductSubcategory','SalesTerritory','Shift','StateProvince'
+		'Product','ProductCategory','ProductModel','ProductSubcategory','SalesTerritory','Shift','StateProvince','Store'
 	)
 ORDER BY schemaname, tablename;
 GO
