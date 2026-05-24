@@ -1,0 +1,86 @@
+Design a metadata-driven Databricks framework to process AdventureWorks OLTP tables extracted into ADLS Gen2. 
+The files are stored in the format: container/database/schema/(full|incr)/table/tablename_timestamp.csv
+
+Project Requirements:
+1. **Metadata Control Table**
+   - Define a Delta control table with fields:
+     - source_path
+     - target_catalog, target_schema, target_table
+     - load_type (F/I)
+     - watermark_column, last_loaded_on
+     - expected_schema
+     - active_flag
+   - This table drives ingestion dynamically.
+
+2. **Bronze Layer (Raw Ingestion)**
+   - Read CSV files from ADLS using metadata.
+   - Support both batch and structured streaming ingestion.
+   - Store raw data in Unity Catalog Bronze tables.
+   - Apply schema enforcement and log rejected records.
+
+3. **Silver Layer (Cleansed/Validated)**
+   - Deduplicate and cleanse data.
+   - Apply incremental logic using watermark column.
+   - Merge into Silver tables with Delta merge.
+   - Maintain audit columns (inserted_on, updated_on).
+
+4. **Gold Layer (Dimensional & Fact Tables ONLY)**
+   - Build **Dimensional Tables**:
+     - DimCustomer ← from sales.customer, person.person, person.emailaddress, person.address
+     - DimEmployee ← from humanresources.employee, humanresources.department, humanresources.shift
+     - DimProduct ← from production.product, production.productcategory, production.productmodel, production.productsubcategory
+     - DimTerritory (optional) ← from sales.salesterritory, person.stateprovince, person.countryregion
+   - Build **Fact Tables**:
+     - FactSales ← joins DimCustomer, DimProduct, DimTerritory
+     - FactInventory ← joins DimProduct with inventory metrics
+     - FactProductionCost ← joins DimProduct with production cost metrics
+   - Ensure referential integrity between dimensions and facts.
+   - No raw or cleansed tables should exist here — only curated dim/fact models.
+
+5. **Structured Streaming**
+   - Configure streaming ingestion for incremental loads.
+   - Use Auto Loader for schema evolution and file discovery.
+   - Maintain checkpoints and trigger intervals.
+
+6. **Parameterization**
+   - Use notebook widgets or job parameters for:
+     - environment (dev/test/prod)
+     - storage account/container
+     - catalog/schema/table names
+     - load type and watermark values
+
+7. **Dynamic Execution**
+   - Implement a loop that iterates through active metadata entries.
+   - For each entry:
+     - If load_type = 'F' → full overwrite.
+     - If load_type = 'I' → incremental merge using watermark.
+
+8. **Governance & Unity Catalog**
+   - Register all tables in Unity Catalog with ownership and permissions.
+   - Use Unity Catalog Volumes for file access.
+   - Track lineage and maintain audit logs.
+
+9. **Output**
+   - Provide modular notebooks/functions:
+     - `read_metadata()`
+     - `validate_schema()`
+     - `process_bronze()`
+     - `process_silver()`
+     - `process_gold_dim_fact()`
+     - `update_control_table()`
+   - Include pseudocode, folder structure, and job orchestration plan.
+
+10. **AdventureWorks Tables**
+   - Ingest and process the following:
+     - HumanResources: department, employee, employeedepartmenthistory, shift
+     - Person: address, addresstype, businessentity, businessentityaddress, countryregion, emailaddress, person, personphone, phonenumbertype, stateprovince
+     - Production: product, productcategory, productmodel, productsubcategory
+     - Sales: customer, salesterritory
+   - Curate into Gold layer Dimensional and Fact tables:
+     - DimCustomer, DimEmployee, DimProduct, DimTerritory
+     - FactSales, FactInventory, FactProductionCost
+
+Goal:
+Generate a complete step-by-step Databricks framework design with modular notebooks, schema enforcement, medallion layering, and structured streaming support. 
+Ensure the Gold layer contains **only Dimensional and Fact tables**. 
+Include sample PySpark/SQL snippets, visual diagrams of data flow, and best practices for scalability and maintainability.

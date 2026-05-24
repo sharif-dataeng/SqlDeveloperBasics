@@ -255,6 +255,24 @@ CREATE TABLE  [Sales].[Customer](
 );
 GO
 
+-- Sales.Store
+/*
+  Purpose: Store locations linked to BusinessEntity.
+  Notes: BusinessEntityID is the primary key and maps to Person.BusinessEntity.
+*/
+CREATE TABLE [Sales].[Store](
+    [BusinessEntityID] [int] NOT NULL,
+    [Name] [nvarchar](50) NOT NULL,
+    [SalesPersonID] [int] NULL,
+    [Demographics] [varchar](max) NULL,
+    [rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
+    [ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
+ CONSTRAINT [PK_Store_BusinessEntityID] PRIMARY KEY CLUSTERED (
+    [BusinessEntityID] ASC
+)
+);
+GO
+
 
 /* ===== TABLES: dimemployee group (ordered) =====
    Order rationale:
@@ -400,6 +418,65 @@ CREATE TABLE  [Production].[Product](
 );
 -- Comment: Product.ProductSubcategoryID -> Production.ProductSubcategory
 --          Product.ProductModelID -> Production.ProductModel
+GO
+
+-- Sales.SalesOrderHeader
+/*
+  Purpose: Sales order header records for transactions.
+  Dependencies: Sales.ShipMethod, Sales.CurrencyRate, Person.Address, Sales.Customer, HumanResources.Employee, Sales.SalesTerritory, Person.CreditCard
+  Notes: SalesOrderNumber and TotalDue are computed columns.
+*/
+CREATE TABLE [Sales].[SalesOrderHeader](
+	[SalesOrderID] [int] IDENTITY(1,1) NOT FOR REPLICATION NOT NULL,
+	[RevisionNumber] [tinyint] NOT NULL,
+	[OrderDate] [datetime] NOT NULL,
+	[DueDate] [datetime] NOT NULL,
+	[ShipDate] [datetime] NULL,
+	[Status] [tinyint] NOT NULL,
+	[OnlineOrderFlag] [bit] NOT NULL,
+	[SalesOrderNumber] AS (isnull(N'SO'+CONVERT([nvarchar](23),[SalesOrderID]),N'*** ERROR ***')),
+	[PurchaseOrderNumber] [nvarchar](25) NULL,
+	[AccountNumber] [nvarchar](15) NULL,
+	[CustomerID] [int] NOT NULL,
+	[SalesPersonID] [int] NULL,
+	[TerritoryID] [int] NULL,
+	[BillToAddressID] [int] NOT NULL,
+	[ShipToAddressID] [int] NOT NULL,
+	[ShipMethodID] [int] NOT NULL,
+	[CreditCardID] [int] NULL,
+	[CreditCardApprovalCode] [varchar](15) NULL,
+	[CurrencyRateID] [int] NULL,
+	[SubTotal] [money] NOT NULL,
+	[TaxAmt] [money] NOT NULL,
+	[Freight] [money] NOT NULL,
+	[TotalDue] AS (isnull(([SubTotal]+[TaxAmt])+[Freight],(0))),
+	[Comment] [nvarchar](128) NULL,
+	[rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
+	[ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
+	CONSTRAINT [PK_SalesOrderHeader_SalesOrderID] PRIMARY KEY CLUSTERED ([SalesOrderID] ASC)
+);
+GO
+
+-- Sales.SalesOrderDetail
+/*
+  Purpose: Sales order detail line items; child table of SalesOrderHeader.
+  Dependencies: Sales.SalesOrderHeader, Production.Product, Sales.SpecialOffer
+  Notes: LineTotal is a computed column; PK is composite (SalesOrderID, SalesOrderDetailID).
+*/
+CREATE TABLE [Sales].[SalesOrderDetail](
+	[SalesOrderID] [int] NOT NULL,
+	[SalesOrderDetailID] [int] IDENTITY(1,1) NOT NULL,
+	[CarrierTrackingNumber] [nvarchar](25) NULL,
+	[OrderQty] [smallint] NOT NULL,
+	[ProductID] [int] NOT NULL,
+	[SpecialOfferID] [int] NOT NULL,
+	[UnitPrice] [money] NOT NULL,
+	[UnitPriceDiscount] [money] NOT NULL,
+	[LineTotal] AS (isnull(([UnitPrice]*((1.0)-[UnitPriceDiscount]))*[OrderQty],(0.0))),
+	[rowguid] [uniqueidentifier] ROWGUIDCOL NOT NULL DEFAULT NEWID(),
+	[ModifiedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
+	CONSTRAINT [PK_SalesOrderDetail_SalesOrderID_SalesOrderDetailID] PRIMARY KEY CLUSTERED ([SalesOrderID] ASC, [SalesOrderDetailID] ASC)
+);
 GO
 
 
@@ -753,6 +830,54 @@ BEGIN
   UPDATE t SET ModifiedDate = GETDATE()
   FROM Production.Product t
   INNER JOIN inserted i ON t.ProductID = i.ProductID;
+END;
+GO
+
+-- Sales.SalesOrderHeader
+IF OBJECT_ID('Sales.SalesOrderHeader_UpdateTrigger') IS NOT NULL
+  DROP TRIGGER Sales.SalesOrderHeader_UpdateTrigger;
+GO
+CREATE TRIGGER Sales.SalesOrderHeader_UpdateTrigger
+ON Sales.SalesOrderHeader
+AFTER UPDATE
+AS
+BEGIN
+  SET NOCOUNT ON;
+  UPDATE t SET ModifiedDate = GETDATE()
+  FROM Sales.SalesOrderHeader t
+  INNER JOIN inserted i ON t.SalesOrderID = i.SalesOrderID;
+END;
+GO
+
+-- Sales.Store
+IF OBJECT_ID('Sales.Store_UpdateTrigger') IS NOT NULL
+  DROP TRIGGER Sales.Store_UpdateTrigger;
+GO
+CREATE TRIGGER Sales.Store_UpdateTrigger
+ON Sales.Store
+AFTER UPDATE
+AS
+BEGIN
+  SET NOCOUNT ON;
+  UPDATE t SET ModifiedDate = GETDATE()
+  FROM Sales.Store t
+  INNER JOIN inserted i ON t.BusinessEntityID = i.BusinessEntityID;
+END;
+GO
+
+-- Sales.SalesOrderDetail
+IF OBJECT_ID('Sales.SalesOrderDetail_UpdateTrigger') IS NOT NULL
+  DROP TRIGGER Sales.SalesOrderDetail_UpdateTrigger;
+GO
+CREATE TRIGGER Sales.SalesOrderDetail_UpdateTrigger
+ON Sales.SalesOrderDetail
+AFTER UPDATE
+AS
+BEGIN
+  SET NOCOUNT ON;
+  UPDATE t SET ModifiedDate = GETDATE()
+  FROM Sales.SalesOrderDetail t
+  INNER JOIN inserted i ON t.SalesOrderID = i.SalesOrderID AND t.SalesOrderDetailID = i.SalesOrderDetailID;
 END;
 GO
 /* ===== END OF SCRIPT ===== */
