@@ -1,0 +1,5 @@
+A database is designed for fast, real-time transaction processing (OLTP), 
+while a data warehouse is optimized for large-scale analytical queries 
+(OLAP) and business intelligence. 
+In short: databases handle day-to-day operations, 
+data warehouses handle long-term insights.
