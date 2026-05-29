@@ -1,0 +1,110 @@
+--In SQL, a schema is the blueprint or logical structure of a database. 
+  It defines how data is organized — including tables, columns, data types, constraints, and 
+  relationships — but does not contain the actual data itself. Think of it as the “plan” or 
+  “architecture” of the database. 
+
+SQL Datatypes:
+    In SQL, data types define the kind of values a column can store — such as numbers, text, dates, or 
+    binary data. Choosing the right data type is critical for performance, accuracy, and storage efficiency.
+
+    1. Numeric Types
+        INT / INTEGER → Whole numbers (e.g., 1, 100, -50).
+        SMALLINT / TINYINT / BIGINT → Smaller or larger ranges of integers
+        DECIMAL / NUMERIC → Fixed precision numbers (e.g., 12.34).
+        FLOAT / REAL / DOUBLE → Approximate precision floating-point numbers.
+        BIT / BOOLEAN → True/false values.
+
+    2. String Types
+        CHAR(n) → Fixed-length string (pads with spaces).
+        VARCHAR(n) → Variable-length string (saves space).
+        TEXT / CLOB → Large text storage.
+        BINARY / VARBINARY → Binary data (images, files).
+        ENUM / SET (MySQL) → Restricted list of values.
+
+    3. Date & Time Types
+        DATE → Stores year, month, day.
+        TIME → Stores hours, minutes, seconds.
+        DATETIME / TIMESTAMP → Stores both date and time.
+        YEAR (MySQL) → Stores only year values.
+
+Constraints:
+    In SQL, constraints are rules applied to columns or tables that enforce data integrity, accuracy, 
+    and consistency. They prevent invalid data entry and ensure relationships between tables remain valid.
+
+Common Types of SQL Constraints:
+    NOT NULL → Ensures a column cannot have NULL values
+    UNIQUE → Guarantees all values in a column are distinct.
+    PRIMARY KEY → Combines NOT NULL + UNIQUE; uniquely identifies each row.
+    FOREIGN KEY → Links one table’s column to another table’s primary key, maintaining referential integrity.
+    CHECK → Ensures values meet a specific condition (e.g., age > 18).
+    DEFAULT → Assigns a default value if none is provided.
+    INDEX → Improves query performance by creating indexes on columns.
+
+Primary key:
+    In SQL, a Primary Key is a special constraint that uniquely identifies each row in a table and 
+    ensures that no duplicate or NULL values exist in the key column(s). It acts as the main identifier 
+    for records and is often referenced by foreign keys in other tables to maintain relationships.
+    Ex: CREATE TABLE Students (
+        StudentID INT PRIMARY KEY,
+        Name VARCHAR(100),
+        Age INT
+        );
+
+Foreign Key:
+    A foreign key in SQL is a constraint that links one table (child) to another table (parent) 
+    by referencing the parent’s primary key, ensuring data consistency and referential integrity. 
+    It prevents inserting values in the child table that don’t exist in the parent table and 
+    restricts deleting parent rows that are still referenced.
+    Ex: CREATE TABLE Customers (
+        CustomerID INT PRIMARY KEY,
+        Name VARCHAR(100)
+        );
+
+        CREATE TABLE Orders (
+        OrderID INT PRIMARY KEY,
+        OrderDate DATE,
+        CustomerID INT,
+        FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+        );
+
+Indexes:
+    In SQL, an index is a database object that speeds up data retrieval by creating a 
+    structured lookup (usually a B-tree) on one or more columns. 
+    Indexes improve query performance but add overhead for inserts, updates, and deletes.
+
+Types of Indexes:
+    Clustered - Sorts and stores rows in order of key values. Only one per table.
+    Nonclustered - Separate structure with pointers to rows. Multiple allowed.
+    Unique - Ensures no duplicate values in indexed column(s).
+    Columnstore - Stores data by columns, optimized for analytics.
+    Filtered - Indexes only a subset of rows.
+    Hash - Uses hash table for fast lookups (memory-optimized).
+    Full-text - Indexes text for advanced search.
+
+--In SQL, the DELETE command is used to remove rows from a table, 
+  either selectively (using a condition) or all rows if no condition is specified. 
+  Unlike TRUNCATE, it logs each row deletion and can be rolled back if used inside a transaction.
+
+--In SQL, the TRUNCATE command is used to quickly remove all rows from a table, 
+  while keeping the table structure intact. It’s faster than DELETE because it doesn’t log 
+  each row deletion individually — instead, it deallocates the entire data pages.
+
+--In SQL, the DROP command is used to completely remove a database object — such as a table, 
+  view, or database itself. Unlike DELETE or TRUNCATE, DROP removes both the data and the structure, 
+  meaning the object no longer exists.
+
+--INSERT INTO
+        -Used to add new rows into an existing table.
+        -You can specify values for all columns or only selected ones.
+    Syntax: INSERT INTO Employees (EmpID, Name, Age)
+            VALUES (1, 'Alice', 30);
+
+--SELECT INTO
+        -Creates a new table and inserts data into it from a SELECT query.
+        -Often used for backups or creating temporary tables.
+    Syntax: SELECT Name, Age
+            INTO BackupEmployees
+            FROM Employees
+            WHERE Age > 25;
+
+
