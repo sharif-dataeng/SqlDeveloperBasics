@@ -36,6 +36,7 @@ LastName varchar(50),
 Department varchar(20),
 Hiredate date
 );
+
 Insert into Employee
 (EmployeeID, FirstName, LastName, Department, Hiredate)
 values
@@ -44,6 +45,8 @@ values
 (213, 'Ahmed', 'Khan', 'Finance', '2021-07-10'),
 (214, 'Maria', 'Lopez', 'Marketing', '2022-11-05'),
 (215, 'Chen', 'Wei', 'IT', '2018-09-30');
+
+
 create table Products(
 ProductID int primary key,
 ProductName varchar(50),
@@ -60,3 +63,5 @@ values
 (103, 'Coffee Maker', 'Appliances', 250400.80, 215),
 (104, 'Smart Phone', 'Electronics', 32000.00, 211),
 (105, 'Desk', 'Furniture', 8500.90, 213);
+
+

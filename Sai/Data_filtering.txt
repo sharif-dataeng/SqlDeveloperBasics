@@ -1,0 +1,37 @@
+Operators - In SQL, operators are symbols that perform specific operations on one or more operands. 
+Here are some of the key types of operators you'll encounter:
+
+Comparison Operators:
+
+    These operators compare two values and return a Boolean result (true or false). 
+    Common comparison operators include:
+        = (equal to - check if two values are equal)
+        != or <> (not equal to - check if two values are not equal)
+        > (greater than - checks if a value is greater than another value)
+        < (less than - checks if a value is less than another value)
+        >= (greater than or equal to - checks if a value is greater than or equal to another value)
+        <= (less than or equal to - checks if a value is less than or equal to another value)
+
+Logical Operators:
+
+    These combine multiple conditions. The most commonly used logical operators are:
+        AND (returns true if both conditions are true)
+        OR (returns true if at least one condition is true)
+        NOT (Excludes the matching rows)
+
+Range Operator:
+
+    The BETWEEN operator checks if a value falls within a specified range. 
+    For example, price BETWEEN 100 AND 200 checks if the price is between 100 and 200, inclusive.
+
+Membership Operator:
+
+    The IN operator checks if a value matches any value in a list. 
+    For instance, status IN ('active', 'inactive') checks if the status is either 'active' or 'inactive'.
+
+Search Operator:
+
+    The LIKE operator is used to search for a specified pattern in a column.
+    % Anything
+    _ Exactly one character
+    For example, name LIKE 'A%' would return all names that start with 'A'.

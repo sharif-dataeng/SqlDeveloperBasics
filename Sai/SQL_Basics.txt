@@ -1,0 +1,59 @@
+What is Database
+    A database is a container that stores the data. The DB organizes the data so it is easy 
+    to access, to manage and search.
+
+What is SQL
+    Structured Query Language is the language that we use in order to talk to the DB.
+
+Why DB?
+    -It can manage big data.
+    -DBs are secure and we can control who is accessing what.
+
+DBMS - Database Managemnt System
+    It is a sotfware that can manage dierent requests to our database and its going to make priority
+    which SQL must be executed first
+
+Server - Physical machine where the DB lives
+
+Types of SQL 
+    Data Deinition Language - Defines and manages database schema/structure(CREATE, ALTER, DROP, TRUNCATE, RENAME)
+    Data Manipulation Language - Handles data inside tables(INSERT, UPDATE, DELETE, MERGE)
+    Data Query Language - Retrieves data from the database(SELECT)
+    Data Control Language - Controls access and permissions(GRANT, REVOKE)
+    Transaction Control Language - Manages transactions(COMMIT, ROLLBACK, SAVEPOINT, SET TRANSACTION)
+
+SQL Query - Statments used to retrieve the data from the database
+
+SELECT FROM - Selecting the columns that we want to specify and in the from we specify table name
+WHERE - It is used to filter the data based on condition. 
+        The data that fulfill the condition will display in output
+
+ORDER BY - It is used to sort the data in either ascending or descending order
+
+GROUP BY - Combine the rows with the same value(aggregates a column by another column)
+
+HAVING - It is used to filter the data after the aggregation. We can use HAVING only after using the GROUP BY
+
+DISTINCT - It is used to remove the duplicates in the data. 
+            It make sure that the value is appeared only once in the result
+
+TOP - It is used to limit the data. Restricts the number of rows returned in the result
+
+Coding order
+(5)    SELECT DISTINCT TOP 2 (7)
+       col1,
+       SUM(col2)
+(1)    FROM TABLE 
+(2)    WHERE col = 10
+(3)    GROUP BY col1
+(4)    HAVING SUM(col2) > 30
+(6)    ORDER BY col1 ASC 
+
+Executing order
+(1)    FROM
+(2)    WHERE
+(3)    GROUP BY
+(4)    HAVING
+(5)    SELECT/DISTINCT
+(6)    ORDER BY
+(7)    TOP

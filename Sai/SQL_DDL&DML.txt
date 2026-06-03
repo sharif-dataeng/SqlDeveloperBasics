@@ -1,0 +1,18 @@
+-DDL commands will never return the data but it will change the structure in the database
+
+CREATE - It is used to create a new object in the database.
+
+ALTER - It is used to change the definition of the table like adding a new column or changing the datatype.
+        When we add a new column by deault the column is appended at the end of the table.
+
+DROP - It is used to remove a table completely from the database.
+
+INSERT - It is used to add new rows to the table.
+
+UPDATE - It is used to change the content of already existing rows. 
+         Always use WHERE clause to avoid updating all rows unintentionally
+
+DELETE - It is used to delete the existing rows from the table. 
+         Always use WHERE clause to avoid deleting all rows
+         
+TRUNCATE - It is used to delete all the rows from the table. It is faster than DELETE command.
