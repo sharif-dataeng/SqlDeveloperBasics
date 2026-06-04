@@ -1,0 +1,25 @@
+A Function is a built-in SQL code that accepts an input value, process it and returns an output value
+
+String Functions:
+
+CONCAT - Combines multiple strings into one
+UPPER - Converts all characters to uppercase
+LOWER - Converts all characters to lower
+TRIM - Removes leading and trailing spaces
+REPLACE - Replaces a specific character with a new character
+LEN - Counts how many characters
+LEFT - Extracts specific number of characters from the start of a string
+RIGHT - Extracts specific number of characters from the end of a string
+SUBSTRING - Exctracts a part of string at a specified position
+
+Number Functions:
+
+ROUND - Round up the numbers after the decimal point 
+ABS - Returns the absolute (positive) value of a number, removing any negative sign 
+
+Date & Time Functions
+
+DAY() - Returns day from a Date
+Month() - Returns month from a Date
+YEAR() - Returns year from a Date
+DATEPART() - Returns a specific part of a date as a number

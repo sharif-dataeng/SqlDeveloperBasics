@@ -1,0 +1,17 @@
+Rules for SET Operators:
+    1. SQL Clauses - SET operator can be used almost in all clauses 
+        WHERE | JOIN | GROUP BY | HAVING
+        ORDER BY is allowed only once at the end of query
+    2. Number of columns - The number of columns in each query must be the same
+    3. Data Types - Data types in each query must be compatible
+    4. Order of columns - The order of columns in each query must be the same
+    5. Column Aliases - The column names in the result set are determined by the column names specified in the first query
+    6. Correct columns - Even if all rules are met and SQL shows no errors, the result may be incorrect.
+                        Incorrect column selection leads to inaccurate results
+    
+UNION - Returns all distinct rows from both queries. Removes duplicate rows from the result
+UNION ALL - Returns all rows from both queries including duplicates
+EXCEPT - Returns all distinct rows from the first query that are not found in the second query
+        It is the only one where the order of queries affects the final result
+INTERSECT - Returns only the rows that are common in boh queries
+

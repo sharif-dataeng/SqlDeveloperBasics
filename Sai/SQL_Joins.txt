@@ -1,0 +1,14 @@
+SQL Joins
+    SQL Joins are used to combine the data from different tables using common column.
+
+-Joins are used to combine the columns SET operators are used to combine rows
+
+No Join - Returns the data without combining te tables
+Inner Join - Returns only matching rows from both tables
+Left Join - Returns all rows from left and only matching from right. If there is no match then it will store the NULL value
+Right Join - Returns all rows from right and only matching from left. If there is no match then it will store the NULL value
+Full Join - Returns all the rows from both tables
+Left Anti Join - Returns rows from left that has no match in right
+Right Anti Join - Returns rows from right that has no match in left
+Full Anti Join - Returns rows that don't match in either tables
+Cross Join - Combines every row from left with every row from right(cartesian joins)
