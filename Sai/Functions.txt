@@ -17,9 +17,40 @@ Number Functions:
 ROUND - Round up the numbers after the decimal point 
 ABS - Returns the absolute (positive) value of a number, removing any negative sign 
 
-Date & Time Functions
+Date & Time Functions:
 
 DAY() - Returns day from a Date
 Month() - Returns month from a Date
 YEAR() - Returns year from a Date
 DATEPART() - Returns a specific part of a date as a number
+DATENAME() - Returns the name of a specific part of a date
+DATETRUNC() - Truncates the date to the specific part
+EOMONTH() - Return the last day of the month
+
+Formatting - Changing the format of a valuee from one to another
+Casting - Changing the data type from one to another
+FORMAT() - Formats a date or time value
+CONVERT() - Converts a date or time value to a different data type & formats the value
+CAST() - Converts a value to a specified data type
+
+DATEADD() - Adds or subtracts a specific time interval to/from a date
+DATEDIFF() - Find the difference between two dates
+ISDATE() - Check if a value is a date. Returns 1 if the string value is a valid date.
+
+Null Functions:
+
+ISNULL() - Replaces 'NULL' with a specified value
+COALESCE() - Returns the first non-null value from a list
+NULLIF() - Compares two expressions and returns NULL if they are equal/ First value if they are not equal
+IS NULL() - Returns true if the value is null, otherwise it returns false
+IS NOT NULL() - Returns true if the value is not null, otherwise it returns false
+
+CASE - Evaluates a list of conditions and returns a value when the first condition is met 
+
+Aggregate Functions:
+
+COUNT(), SUM(), AVG(), MAX(), MIN()
+
+Analytical/Window Functions:
+
+The window functions perform calculations on a specific subset of data, without losing the level of details of rows.
