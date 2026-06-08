@@ -10,7 +10,7 @@ Why DB?
     -DBs are secure and we can control who is accessing what.
 
 DBMS - Database Managemnt System
-    It is a sotfware that can manage dierent requests to our database and its going to make priority
+    It is a sotfware that can manage different requests to our database and its going to make priority
     which SQL must be executed first
 
 Server - Physical machine where the DB lives
