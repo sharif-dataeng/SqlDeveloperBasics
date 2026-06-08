@@ -3,7 +3,7 @@
 CREATE - It is used to create a new object in the database.
 
 ALTER - It is used to change the definition of the table like adding a new column or changing the datatype.
-        When we add a new column by deault the column is appended at the end of the table.
+        When we add a new column by default the column is appended at the end of the table.
 
 DROP - It is used to remove a table completely from the database.
 

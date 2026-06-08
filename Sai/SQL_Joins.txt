@@ -1,7 +1,7 @@
 SQL Joins
     SQL Joins are used to combine the data from different tables using common column.
 
--Joins are used to combine the columns SET operators are used to combine rows
+-Joins are used to combine the columns and SET operators are used to combine rows
 
 No Join - Returns the data without combining te tables
 Inner Join - Returns only matching rows from both tables

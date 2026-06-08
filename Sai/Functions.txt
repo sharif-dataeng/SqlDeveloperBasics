@@ -27,7 +27,7 @@ DATENAME() - Returns the name of a specific part of a date
 DATETRUNC() - Truncates the date to the specific part
 EOMONTH() - Return the last day of the month
 
-Formatting - Changing the format of a valuee from one to another
+Formatting - Changing the format of a value from one to another
 Casting - Changing the data type from one to another
 FORMAT() - Formats a date or time value
 CONVERT() - Converts a date or time value to a different data type & formats the value
